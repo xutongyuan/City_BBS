@@ -1,0 +1,315 @@
+/*************制作：@zhou小白猪*************/
+/******修改日期 2014/08/15*****/
+
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; PADDING-BOTTOM: 0px; MARGIN: 0px; COLOR: #000; PADDING-TOP: 0px;  TEXT-ALIGN: left
+}
+H1 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H2 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H3 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H4 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+H6 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+DIV {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+P {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+I {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+OL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TABLE {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+FIELDSET {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LABEL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+LEGEND {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+A IMG {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+A:link {
+	COLOR: #4f4f4f; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #4f4f4f; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #2965b1; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff6600; TEXT-DECORATION: none
+}
+LI {
+	LIST-STYLE-TYPE: none
+}
+.clearit {
+	CLEAR: both; FONT-SIZE: 0px; OVERFLOW: hidden; HEIGHT: 0px
+}
+.fontyh {
+	FONT: bold 28px "Microsoft YaHei","微软雅黑"
+}
+INPUT {
+	FONT-SIZE: 12px
+}
+TEXTAREA {
+	FONT-SIZE: 12px
+}
+SELECT {
+	FONT-SIZE: 12px
+}
+.colorOrange {
+	COLOR: #ff7200
+}
+.cred {
+	COLOR: red
+}
+A.cred:link {
+	COLOR: red
+}
+A.cred:visited {
+	COLOR: red
+}
+A.cred:hover {
+	COLOR: red
+}
+.cblue {
+	COLOR: #14b2e4
+}
+A.cblue:link {
+	COLOR: #14b2e4
+}
+A.cblue:visited {
+	COLOR: #14b2e4
+}
+A.cblue:hover {
+	COLOR: #14b2e4
+}
+.cblue2 {
+	COLOR: #007499
+}
+A.cblue2:link {
+	COLOR: #007499
+}
+A.cblue2:visited {
+	COLOR: #007499
+}
+A.cblue2:hover {
+	COLOR: #007499
+}
+.cblue3 {
+	COLOR: #00739a
+}
+A.cblue3:link {
+	COLOR: #00739a
+}
+A.cblue3:visited {
+	COLOR: #00739a
+}
+A.cblue3:hover {
+	COLOR: #00739a
+}
+.cwhite {
+	COLOR: #fff
+}
+A.cwhite:link {
+	COLOR: #fff
+}
+A.cwhite:visited {
+	COLOR: #fff
+}
+.cblack {
+	COLOR: #000
+}
+A.cblack:link {
+	COLOR: #000
+}
+A.cblack:visited {
+	COLOR: #000
+}
+.cyellow {
+	COLOR: #ff6500
+}
+A.cyellow:link {
+	COLOR: #ff6500
+}
+A.cyellow:visited {
+	COLOR: #ff6500
+}
+.cgery {
+	COLOR: #797979
+}
+A.cgery:link {
+	COLOR: #797979
+}
+A.cgery:visited {
+	COLOR: #797979
+}
+.cgreen {
+	COLOR: #91e034
+}
+A.cgreen:link {
+	COLOR: #91e034
+}
+A.cgreen:visited {
+	COLOR: #91e034
+}
+.underline {
+	TEXT-DECORATION: underline
+}
+A.underline:link {
+	TEXT-DECORATION: underline
+}
+A.underline:visited {
+	TEXT-DECORATION: underline
+}
+.ffa
+{
+    font-family: Tahoma,'Microsoft Yahei','Simsun';
+}
+.fb {
+	FONT-WEIGHT: bold
+}
+.vimg {
+	VERTICAL-ALIGN: middle
+}
+.f12 {
+	FONT-SIZE: 12px
+}
+f13
+{
+    font-size:13px;
+}
+.f14 {
+	FONT-SIZE: 14px
+}
+.f16 {
+	FONT-SIZE: 16px
+}
+.blank4 {
+	CLEAR: both; FONT-SIZE: 1px; OVERFLOW: hidden; HEIGHT: 4px
+}
+.blank8 {
+	CLEAR: both; FONT-SIZE: 1px; OVERFLOW: hidden; HEIGHT: 8px;
+}
+.blank12 {
+	CLEAR: both; FONT-SIZE: 1px; OVERFLOW: hidden; HEIGHT: 12px
+}
+.blank16 {
+	CLEAR: both; FONT-SIZE: 1px; OVERFLOW: hidden; HEIGHT: 16px
+}
+.f14_line {
+	FONT-SIZE: 14px; LINE-HEIGHT: 22px
+}
+.filter {
+	FILTER: dropshadow(color=#ffffff,offx=1,offy=1,positive=1); COLOR: #000000
+}
+.left {
+	FLOAT: left
+}
+.right {
+	FLOAT: right
+}
+.noborder {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+.textcen {
+	TEXT-ALIGN: center
+}
+.textleft {
+	TEXT-ALIGN: left
+}
+.textrig {
+	TEXT-ALIGN: right
+}
+.bgfff {
+	BACKGROUND: #fff
+}
+.jz {
+	MARGIN: 0px auto
+}
+.pad5 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.padtb5 {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.lh22 {
+	LINE-HEIGHT: 22px
+}
+
+
+
+#page{
+
+	width:850px;
+	height: 30px;
+	text-align:center;
+	margin:0px auto;
+}
+.g_pag {
+	text-align: center; 
+	padding-bottom: 3px; 
+	padding-left: 3px; 
+	padding-right: 3px; 
+	font-family: verdana, geneva, sans-serif; 
+	font-size: 12px; 
+	padding-top: 3px;
+	float:left
+}
+.g_pag a {
+	padding-bottom: 2px;
+	margin: 0px 2px 0px 0px;
+	padding-left: 5px;
+	padding-right: 5px;
+	text-decoration: none;
+	padding-top: 2px;
+	border: 1px solid #CCCCCC;
+}
+.g_pag a:hover {
+	background-color:#eeeeee;
+	border: 1px solid #dddddd;
+}
+.g_pag a:active {
+	border: 1px solid #CCCCCC;
+
+}

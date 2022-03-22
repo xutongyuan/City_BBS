@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.Theme_BackReadMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.Theme_BackRead" >
+    <id column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="posting_time" property="postingTime" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="good_post" property="goodPost" jdbcType="VARCHAR" />
+    <result column="backcontent" property="backcontent" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="VARCHAR" />
+    <result column="read_count" property="readCount" jdbcType="INTEGER" />
+    <result column="back_count" property="backCount" jdbcType="INTEGER" />
+
+  </resultMap>
+
+  <select id="selectTheme_BackByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select t.user_id,t.post_id,t.title,t.content,t.posting_time,t.area,tb.content backcontent,tb.reply_time ,pc.read_count,pc.back_count
+	from theme_back tb,theme t,post_count pc where tb.back_theme_id = t.post_id 
+	and tb.back_theme_id = pc.post_id 
+	and tb.user_id =  #{userId,jdbcType=VARCHAR} 
+  </select>
+ 
+</mapper>

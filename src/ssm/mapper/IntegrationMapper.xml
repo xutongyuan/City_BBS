@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.IntegrationMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Integration" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="online_time" property="onlineTime" jdbcType="INTEGER" />
+    <result column="post_num" property="postNum" jdbcType="INTEGER" />
+    <result column="back_num" property="backNum" jdbcType="INTEGER" />
+    <result column="good_post_num" property="goodPostNum" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="monicker" property="monicker" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, online_time, post_num, back_num, good_post_num, score, monicker
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from integration
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from integration
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Integration" >
+    insert into integration (user_id, online_time, post_num, 
+      back_num, good_post_num, score, 
+      monicker)
+    values (#{userId,jdbcType=VARCHAR}, #{onlineTime,jdbcType=INTEGER}, #{postNum,jdbcType=INTEGER}, 
+      #{backNum,jdbcType=INTEGER}, #{goodPostNum,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, 
+      #{monicker,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Integration" >
+    insert into integration
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="onlineTime != null" >
+        online_time,
+      </if>
+      <if test="postNum != null" >
+        post_num,
+      </if>
+      <if test="backNum != null" >
+        back_num,
+      </if>
+      <if test="goodPostNum != null" >
+        good_post_num,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="monicker != null" >
+        monicker,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineTime != null" >
+        #{onlineTime,jdbcType=INTEGER},
+      </if>
+      <if test="postNum != null" >
+        #{postNum,jdbcType=INTEGER},
+      </if>
+      <if test="backNum != null" >
+        #{backNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodPostNum != null" >
+        #{goodPostNum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="monicker != null" >
+        #{monicker,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Integration" >
+    update integration
+    <set >
+      <if test="onlineTime != null" >
+        online_time = #{onlineTime,jdbcType=INTEGER},
+      </if>
+      <if test="postNum != null" >
+        post_num = #{postNum,jdbcType=INTEGER},
+      </if>
+      <if test="backNum != null" >
+        back_num = #{backNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodPostNum != null" >
+        good_post_num = #{goodPostNum,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="monicker != null" >
+        monicker = #{monicker,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Integration" >
+    update integration
+    set online_time = #{onlineTime,jdbcType=INTEGER},
+      post_num = #{postNum,jdbcType=INTEGER},
+      back_num = #{backNum,jdbcType=INTEGER},
+      good_post_num = #{goodPostNum,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      monicker = #{monicker,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateGoodPostAddOne" parameterType="java.lang.String" >
+    update integration 
+     set good_post_num = good_post_num+1
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateGoodPostSubOne" parameterType="java.lang.String" >
+    update integration 
+     set good_post_num = good_post_num-1
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

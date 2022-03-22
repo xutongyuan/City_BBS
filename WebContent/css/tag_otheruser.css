@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+@charset "utf-8";
+/* CSS Document */
+a{
+	text-decoration:none;
+}
+a, a:link, a:visited{
+	color:#666;
+}
+a:hover{
+	color:#369;
+}
+#con
+{
+	width: 630px;
+	height:auto !important;
+	font-size: 12px;
+	float:left;
+	margin-left:15px;
+}
+#con ul{
+	margin:0px;
+	padding:0px;
+}
+#tags
+{
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	margin: 0px 0px 0px 10px;
+	width: 600px;
+	padding-top: 0px;
+	height: 31px;
+	border-bottom:1px solid #dedede;
+}
+#tags LI
+{
+	height: 30px;
+	float: left;
+	margin-right:5px;
+	margin-left:10px;
+	list-style-type: none;
+	background:#EAF7FE;
+	border:1px solid #dedede;
+	border-bottom:none;
+}
+#tags LI A
+{
+	margin:0;
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-top: 0px;
+	float: left;
+	padding-bottom: 0px;
+	color: #555;
+	line-height: 30px;
+	text-decoration: none;
+}
+#tags LI.emptyTag
+{
+	background: none transparent scroll repeat 0% 0%;
+	width: 4px;
+}
+#tags LI.selectTag
+{
+	background-position: left top;
+	margin-bottom: -2px;
+	position: relative;
+	height: 31px;
+	background:#fff;
+	font-weight:bold;
+	margin-top:0px;
+	border-bottom:none;
+}
+#tags LI.selectTag A
+{
+	background-position: right top;
+	color: #555;
+	line-height: 30px;
+	height: 30px;
+}
+#tagContent
+{
+	/*border-top:1px solid #dedede;*/
+	background-color: #fff;
+}
+.tagContent
+{
+	width: 610px;
+	height:auto !important;
+	height:170px;
+	min-height: 170px;
+	padding-right: 10px;
+	display: none;
+	padding-left: 15px;
+	padding-bottom: 10px;
+	padding-top: 15px;
+	color: #555;
+}
+.tagContent ul{
+	margin:0;
+	padding:0;
+}
+.tagContent ul li{
+	margin:0;
+	padding-left:10px;
+	padding-right:10px;
+	line-height:30px;
+	display:inline;
+	list-style:none;
+	border-right:1px solid #555;
+}
+.tagContent ul li a, .tagContent ul li a:link, .tagContent ul li a:visited{
+	color:#555;
+}
+.tagContent ul li a:hover{
+	color:#555;
+}
+#tagContent DIV.selectTag
+{
+	display: block;
+}

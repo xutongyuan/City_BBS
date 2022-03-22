@@ -1,0 +1,46 @@
+@charset "utf-8";
+.topall{
+	position:fixed;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	font-size:15px;
+	font-family:宋体;
+	float:left;
+	background:url(/City_BBS/images/home/top.gif) repeat-x;
+	filter:alpha(opacity=90);  
+    -moz-opacity:0.9;  
+    -khtml-opacity: 0.9;  
+    opacity: 0.9;
+    z-index:3;
+}
+
+.topalls{
+	
+	margin:0 auto;
+	padding:0;
+	width:1024px;
+	height:40px;
+	line-height:40px;
+	font-size:15px;
+	font-family:"宋体";
+	
+}
+
+.topall a, .topall a:link,  .topall a:visited{
+	/*color:#3399ff;*/
+	height:35px;
+	line-height:35px;
+	margin-right:18px;
+	color:#666;
+	text-decoration:none;
+	font-family:"宋体";
+	float:left;
+}
+.topall a:hover{
+	height:35px;
+	line-height:35px;
+	color:#888;
+	text-decoration:none;
+	float:left;
+}

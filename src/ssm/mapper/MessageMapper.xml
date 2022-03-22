@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.MessageMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Message" >
+    <id column="mess_id" property="messId" jdbcType="INTEGER" />
+    <result column="postmess_id" property="postmessId" jdbcType="VARCHAR" />
+    <result column="recevmess_id" property="recevmessId" jdbcType="VARCHAR" />
+    <result column="mess_title" property="messTitle" jdbcType="VARCHAR" />
+    <result column="mess_content" property="messContent" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="looked" property="looked" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mess_id, postmess_id, recevmess_id, mess_title, mess_content, time, looked
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from message
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Message" >
+    insert into message (mess_id, postmess_id, recevmess_id, 
+      mess_title, mess_content, time, 
+      looked)
+    values (#{messId,jdbcType=INTEGER}, #{postmessId,jdbcType=VARCHAR}, #{recevmessId,jdbcType=VARCHAR}, 
+      #{messTitle,jdbcType=VARCHAR}, #{messContent,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{looked,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="ssm.po.Message" >
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="messId != null" >
+        mess_id,
+      </if>
+      <if test="postmessId != null" >
+        postmess_id,
+      </if>
+      <if test="recevmessId != null" >
+        recevmess_id,
+      </if>
+      <if test="messTitle != null" >
+        mess_title,
+      </if>
+      <if test="messContent != null" >
+        mess_content,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="looked != null" >
+        looked,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="messId != null" >
+        #{messId,jdbcType=INTEGER},
+      </if>
+      <if test="postmessId != null" >
+        #{postmessId,jdbcType=VARCHAR},
+      </if>
+      <if test="recevmessId != null" >
+        #{recevmessId,jdbcType=VARCHAR},
+      </if>
+      <if test="messTitle != null" >
+        #{messTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messContent != null" >
+        #{messContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="looked != null" >
+        #{looked,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Message" >
+    update message
+    <set >
+      <if test="postmessId != null" >
+        postmess_id = #{postmessId,jdbcType=VARCHAR},
+      </if>
+      <if test="recevmessId != null" >
+        recevmess_id = #{recevmessId,jdbcType=VARCHAR},
+      </if>
+      <if test="messTitle != null" >
+        mess_title = #{messTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="messContent != null" >
+        mess_content = #{messContent,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="looked != null" >
+        looked = #{looked,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Message" >
+    update message
+    set postmess_id = #{postmessId,jdbcType=VARCHAR},
+      recevmess_id = #{recevmessId,jdbcType=VARCHAR},
+      mess_title = #{messTitle,jdbcType=VARCHAR},
+      mess_content = #{messContent,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      looked = #{looked,jdbcType=VARCHAR}
+    where mess_id = #{messId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.ThemeBackReadMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.ThemeBackRead" >
+    <id column="back_id" property="backId" jdbcType="INTEGER" />
+    <result column="back_theme_id" property="backThemeId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="reply_time" property="replyTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    t.back_id, t.back_theme_id,t.user_id,t.content, t.reply_time,u.nickname,u.image,i.monicker
+  </sql>
+  <select id="selectByBackThemeId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from theme_back t,userdetail u,integration i
+     where t.user_id = u.user_id and t.user_id = i.user_id 
+     and t.back_theme_id = #{backThemeId,jdbcType=INTEGER}
+  </select>
+  
+
+</mapper>

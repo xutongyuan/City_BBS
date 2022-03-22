@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.MessageReadMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.MessageRead" >
+    <id column="mess_id" property="messId" jdbcType="INTEGER" />
+    <result column="postmess_id" property="postmessId" jdbcType="VARCHAR" />
+    <result column="recevmess_id" property="recevmessId" jdbcType="VARCHAR" />
+    <result column="mess_title" property="messTitle" jdbcType="VARCHAR" />
+    <result column="mess_content" property="messContent" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="looked" property="looked" jdbcType="VARCHAR" />
+     <result column="post_nickname" property="postNickname" jdbcType="VARCHAR" />
+    <result column="recev_nickname" property="recevNickname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    m.mess_id, m.postmess_id, m.recevmess_id, m.mess_title, m.mess_content, m.time, m.looked
+  </sql>
+  <select id="selectByRecevId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> ,ut.nickname post_nickname
+    from message m,userdetail ut 
+    where m.postmess_id=ut.user_id and m.recevmess_id =  #{recevmessId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKeyA" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" /> ,ut.nickname post_nickname
+    from message m,userdetail ut 
+    where m.postmess_id=ut.user_id and m.mess_id =  #{messId,jdbcType=INTEGER}
+  </select>
+  
+  <!--  -->
+   <select id="selectByPostId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" /> ,ut.nickname recev_nickname
+    from message m,userdetail ut 
+    where m.recevmess_id=ut.user_id and m.postmess_id =  #{postmessId,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByPrimaryKeyB" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" /> ,ut.nickname recev_nickname
+    from message m,userdetail ut 
+    where m.recevmess_id=ut.user_id and m.mess_id =  #{messId,jdbcType=INTEGER}
+  </select>
+  
+</mapper>

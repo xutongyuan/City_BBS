@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0 auto;
+	padding:0;
+	font-size:12px;
+	line-height:22px;
+	color: #333333;
+	background-color:#f9f9f9;
+	background-repeat: repeat-x;
+	font-family:'Microsoft Yahei';
+}
+font{
+	float:left;
+}
+a{
+	text-decoration:none;
+}
+.weixin{
+	width:350px;
+	height:450px;
+	background:#fff;
+	border:5px solid #dedede;
+}
+.weixin_text{
+	width:100%;
+	height:auto;
+	line-height:40px;
+	font-size:16px;
+	text-align:center;
+}
+.weixin_logo{
+	width:260px;
+	height:260px;
+	margin:0 auto;
+	padding:0;
+	background:#fff; 
+	border:1px solid #dedede;
+	margin-top:20px;
+}
+.weixin_logo img{
+	width:250px;
+	height:250px;
+	margin-left:5px;
+	margin-top:5px;
+	float:left;
+}

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Admin" >
+    <id column="adm_id" property="admId" jdbcType="INTEGER" />
+    <result column="adm_username" property="admUsername" jdbcType="VARCHAR" />
+    <result column="adm_password" property="admPassword" jdbcType="VARCHAR" />
+    <result column="adm_nicename" property="admNicename" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    adm_id, adm_username, adm_password, adm_nicename, role_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where adm_id = #{admId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByUsernameAndPassword" resultMap="BaseResultMap" parameterType="ssm.po.Admin" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where adm_username = #{admUsername,jdbcType=VARCHAR} and  adm_password = #{admPassword,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where adm_id = #{admId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Admin" >
+    insert into admin (adm_id, adm_username, adm_password, 
+      adm_nicename, role_id)
+    values (#{admId,jdbcType=INTEGER}, #{admUsername,jdbcType=VARCHAR}, #{admPassword,jdbcType=VARCHAR}, 
+      #{admNicename,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="admId != null" >
+        adm_id,
+      </if>
+      <if test="admUsername != null" >
+        adm_username,
+      </if>
+      <if test="admPassword != null" >
+        adm_password,
+      </if>
+      <if test="admNicename != null" >
+        adm_nicename,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="admId != null" >
+        #{admId,jdbcType=INTEGER},
+      </if>
+      <if test="admUsername != null" >
+        #{admUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="admPassword != null" >
+        #{admPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="admNicename != null" >
+        #{admNicename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Admin" >
+    update admin
+    <set >
+      <if test="admUsername != null" >
+        adm_username = #{admUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="admPassword != null" >
+        adm_password = #{admPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="admNicename != null" >
+        adm_nicename = #{admNicename,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where adm_id = #{admId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Admin" >
+    update admin
+    set adm_username = #{admUsername,jdbcType=VARCHAR},
+      adm_password = #{admPassword,jdbcType=VARCHAR},
+      adm_nicename = #{admNicename,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER}
+    where adm_id = #{admId,jdbcType=INTEGER}
+  </update>
+</mapper>

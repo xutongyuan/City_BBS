@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Permission" >
+    <id column="pms_id" property="pmsId" jdbcType="INTEGER" />
+    <result column="pms_form" property="pmsForm" jdbcType="VARCHAR" />
+    <result column="pms_description" property="pmsDescription" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pms_id, pms_form, pms_description
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+   
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission
+    where pms_id = #{pmsId,jdbcType=INTEGER}
+  </select>
+  <select id="selectPermissionCount" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    select count(1) 
+    from permission
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission
+    where pms_id = #{pmsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Permission" >
+    insert into permission (pms_id, pms_form, pms_description
+      )
+    values (#{pmsId,jdbcType=INTEGER}, #{pmsForm,jdbcType=VARCHAR}, #{pmsDescription,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Permission" >
+    update permission
+    <set >
+      <if test="pmsForm != null" >
+        pms_form = #{pmsForm,jdbcType=VARCHAR},
+      </if>
+      <if test="pmsDescription != null" >
+        pms_description = #{pmsDescription,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pms_id = #{pmsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Permission" >
+    update permission
+    set pms_form = #{pmsForm,jdbcType=VARCHAR},
+      pms_description = #{pmsDescription,jdbcType=VARCHAR}
+    where pms_id = #{pmsId,jdbcType=INTEGER}
+  </update>
+</mapper>

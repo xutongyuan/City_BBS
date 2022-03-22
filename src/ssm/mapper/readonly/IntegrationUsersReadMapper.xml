@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.IntegrationUsersReadMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.IntegrationUsersRead" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="online_time" property="onlineTime" jdbcType="INTEGER" />
+    <result column="post_num" property="postNum" jdbcType="INTEGER" />
+    <result column="back_num" property="backNum" jdbcType="INTEGER" />
+    <result column="good_post_num" property="goodPostNum" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="monicker" property="monicker" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    i.user_id,i.back_num,i.post_num,i.score,i.monicker,ut.nickname,ut.image 
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from integration i,userdetail ut 
+	where i.user_id=ut.user_id and i.user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

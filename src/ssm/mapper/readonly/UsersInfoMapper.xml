@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.UsersInfoMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.UsersInfo" >
+    <id column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="REGISTER_TIME" property="registerTime" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+    <result column="PMS_AREA" property="pmsArea" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="SIGNATURE" property="signature" jdbcType="VARCHAR" />
+    <result column="IMAGE" property="image" jdbcType="VARCHAR" />
+    <result column="COUNTY" property="county" jdbcType="VARCHAR" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    u.EMAIL, u.USER_ID, u.REGISTER_TIME, u.ROLE_ID, u.PMS_AREA, ut.PHONE, ut.NICKNAME, ut.SEX, ut.SIGNATURE, ut.IMAGE, ut.COUNTY, ut.LOGIN_TIME
+  </sql>
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS u,USERDETAIL ut 
+    where 
+    u.user_id = ut.user_id and 
+    u.USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectUsersInfoCount" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select count(1)
+	from USERS
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERS u,USERDETAIL ut 
+    where 
+    u.user_id = ut.user_id
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USERS
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Users" >
+    insert into USERS (EMAIL, PASSWORD, USER_ID, 
+      REGISTER_TIME, ROLE_ID, PMS_AREA
+      )
+    values (#{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{registerTime,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{pmsArea,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Users" >
+    insert into USERS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="registerTime != null" >
+        REGISTER_TIME,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="pmsArea != null" >
+        PMS_AREA,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="pmsArea != null" >
+        #{pmsArea,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Users" >
+    update USERS
+    <set >
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="registerTime != null" >
+        REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="pmsArea != null" >
+        PMS_AREA = #{pmsArea,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Users" >
+    update USERS
+    set PASSWORD = #{password,jdbcType=VARCHAR},
+      USER_ID = #{userId,jdbcType=VARCHAR},
+      REGISTER_TIME = #{registerTime,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=INTEGER},
+      PMS_AREA = #{pmsArea,jdbcType=VARCHAR}
+    where EMAIL = #{email,jdbcType=VARCHAR}
+  </update>
+</mapper>

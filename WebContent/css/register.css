@@ -1,0 +1,103 @@
+@charset "utf-8";
+
+.content{background:#EAEAEB;margin:0 0 0 230px;padding:1px 10px 15px 15px;height:auto!important;min-height:600px;height:600px;border-left:#BFBFBF 1px solid;}
+#footer{position:relative;z-index:100;width:100%;height:60px;padding-top:10px;line-height:20px;color:#A9AFB7;border-top:1px solid #CCCCCC;text-align:center;}
+
+/* 输入框 */
+.input-text{background:white;border:1px solid #AAAAAA;height:23px;line-height:23px;color:#666666;padding:0 5px;border-radius:1px;box-shadow:2px 2px 3px rgba(0, 0, 0, .1) inset;}
+.input-text1{background:white;border:1px solid #AAAAAA;height:25px;line-height:25px;color:#666666;padding:0 5px;width:330px;border-radius:1px;box-shadow:2px 2px 3px rgba(0, 0, 0, .1) inset;}
+.input-text2{background:white;border:1px solid #AAAAAA;height:35px;line-height:35px;color:#666666;padding:0 5px;width:330px;border-radius:1px;box-shadow:2px 2px 3px rgba(0, 0, 0, .1) inset;}
+.input-text-user{border:#D8D8D8 1px solid;border-radius:3px;width:290px;padding-left:40px;height:32px;line-height:32px;background:white url(../images/img.png) no-repeat 0px top;}
+.input-text-password{border:#D8D8D8 1px solid;border-radius:3px;width:290px;padding-left:40px;height:32px;line-height:32px;background:white url(../images/img.png) no-repeat 0px -50px;}
+.input-text-user.error{background:#FFD2D2 url(../images/img.png) no-repeat 0px top;border-width:3px;}
+.input-text-password.error{background:#FFD2D2 url(../images/img.png) no-repeat 0px -50px;border-width:3px;}
+
+/* 公用 */
+.overflow{overflow:hidden;}
+.public-content{padding:30px 80px;}
+.dblock{font-size:0;/* 所有浏览器 */letter-spacing:0;*letter-spacing:normal;}
+.inline-block{font-size:14px;display:inline-block;*display:inline;*zoom:1;letter-spacing: normal;}
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+	.dblock{letter-spacing:-5px;/* Safari 等不支持字体大小为 0 的浏览器 */}
+}  
+
+/* 按钮 */
+button,a.btn{background:#3D6AA2 url(../images/bg.png) repeat-x left top;border:1px solid #3D6AA2;margin:0 5px;border-radius:2px;padding:1px 10px;height:24px;line-height:20px;cursor:pointer;color:#FFFFFF;}
+a.btn{display:block;float:left;line-height:24px;}
+button.btn-gray,a.btn.btn-gray{background:#3D6AA2 url(../images/bg.png) repeat-x left -321px;border:#AAAAAA 1px solid;color:#666666;text-shadow:0 1px 0 #FFFFFF;}
+button.btn-gray.hover,a.btn.btn-gray:hover{background-position:left -580px;}
+button.hover,a.btn:hover{background-position:left -80px;}
+button.disabled,a.btn.disabled{background:#999999;color:#666666;border:1px solid #666666;filter:alpha(opacity=40);-moz-opacity:0.4;-khtml-opacity: 0.4;opacity: 0.4; cursor:default;text-shadow:0 1px 0 #FFFFFF;}
+button.btn-big,a.btn-big{width:342px;margin:0;height:40px;font-size:14px;}
+button.btn-oversized,a.btn-oversized{width:150px; text-align:center;float:none;margin:0 auto; height:40px;line-height:40px;font-size:18px;padding:0 15px;}
+button.btn-img,a.btn-img{line-height:26px;*position:relative;*padding-left:30px;}
+button.btn-img .icon,a.btn-img .icon{margin:0 0 -6px -3px;*position:absolute;*left:5px;*top:0px;}
+a.btn-big1{height:35px;line-height:35px;font-size:15px;padding:0 20px;}
+
+.login-btn{display:block;background:url(../images/home/bg.png) repeat-x left top;width:330px;text-align:center;height:35px;line-height:35px;color:white;font-size:16px;border-radius:3px;border:1px solid #215A8D;}
+
+a.btn-gray{background-position:left -270px;border-color:#575757;}
+a.btn-gray:hover{background-position:left -320px;}
+a.btn-blue{background-position:left -470px;border-color:#575757;}
+a.btn-blue:hover{background-position:left -520px;}
+a.btn-black{background-position:left -570px;border-color:#575757;}
+a.btn-black:hover{background-position:left -620px;}
+a.btn-red{background-position:left -370px;border-color:#890A0A;}
+a.btn-red:hover{background-position:left -420px;}
+
+.loginbody{background:#D6E4FF;}
+
+
+/* widget-title-btn */
+
+.group:after{clear: both;content: ".";display: block;font-size: 0;height: 0;overflow: hidden;}
+.group{zoom: 1;}
+.group .widget-box{width:49%;}
+.group-c{padding-top:1px;}
+.group-c .widget-box{width:32%;}
+/* group widget-box */
+
+
+
+
+
+
+/* 底部 */
+#footer .copyright{text-align:left;border-left:1px solid #D2DDF4;padding:10px 0 10px 15px;margin-left:15px;vertical-align:top;}
+#footer a{color:#737C8C;}
+#footer a:hover{color:#333333;text-decoration:underline;}
+
+
+/* login */
+.loginbox,.not-box{width:400px;margin:50px auto 0px auto;}
+.loginbox .logo-a,.not-box .logo-a{height:100px; text-align:center;}
+.loginbox .loginbox-title{background:#FFFFFF;height:70px;border-radius:3px 3px 0 0;}
+.loginbox .loginbox-title .logo{padding:12px 20px;}
+.loginbox .loginbox-title h3{color:#666666;padding:0 20px; line-height:50px;font-size:16px;border-bottom:1px solid #F2F2F2;}
+.loginbox .login-content{border:1px solid #CCCCCC;border-radius:3px;padding-bottom:20px;}
+.loginbox .login-content .text{width:330px;margin:0 auto;line-height:25px;}
+.loginbox .login-content .text h5{font-size:14px;}
+.loginbox .login-content{background:#FFFFFF;height:auto!important;min-height:100px;height:100px;font-size:14px;}
+.loginbox .login-content .row{width:330px;margin:0 auto;padding:20px 0;position:relative;}
+.loginbox .login-content .row .field{position:absolute;left:40px;top:23px;height:35px;line-height:35px;pointer-events:none;}
+.loginbox .login-content .tips{padding:5px 0;height:25px;font-size:14px;}
+.loginbox .login-content .tips input{margin-right:5px;}
+.loginbox .login-content .btnArea{padding:0;margin:15px auto 5px auto;}
+.loginbox .login-content .row .noPic{background-image:none;padding:0 15px;width:300px;height:34px;line-height:34px;}
+.go-regist{text-align:center;height:80px;line-height:80px;}
+.btnArea .abtn{font-size:14px;padding:0 30px;}
+a.link,.go-regist a,.loginbox label a{color:#006DA7; cursor:pointer; line-height:25px;}
+.login-error{display:none;width:330px;margin:0 auto;color:red;}
+.tipsResults{display:none;padding:30px 50px; text-align:center;}
+.tipsResults a{color:#5277A4;}
+.loginbox .autosuggest{position:absolute;left:0;top:54px;z-index:1000;}
+.loginbox .autosuggest li{width:320px;padding:5px 5px;border-bottom:1px solid #CCCCCC;}
+
+/* regist */
+.registbox{margin-top:20px;}
+.registbox .reg-content{}
+.registbox .reg-content .row{padding:10px 0;}
+.registbox .reg-content .row .field{position:absolute;left:10px;top:13px;height:35px;line-height:35px;}
+.registbox .reg-content .row .noPic{background-image:none;padding:0 15px;}
+.registbox .reg-content .row label.error{position:absolute;left:auto;right:10px;bottom:5px;}
+

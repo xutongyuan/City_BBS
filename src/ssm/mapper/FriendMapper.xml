@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.FriendMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Friend" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="usera_id" property="useraId" jdbcType="VARCHAR" />
+    <result column="userb_id" property="userbId" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, usera_id, userb_id, add_time
+  </sql>
+  <select id="selectAllByUseraId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select DISTINCT 
+    <include refid="Base_Column_List" />
+    from friend
+    where usera_id = #{useraId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByUseraIdAndUserbId" resultMap="BaseResultMap" parameterType="ssm.po.Friend" >
+    select DISTINCT 
+    <include refid="Base_Column_List" />
+    from friend
+    where usera_id = #{useraId,jdbcType=VARCHAR} And 
+    userb_id = #{userbId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from friend
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from friend
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <delete id="deleteByUseraAndUserb" parameterType="java.lang.String" >
+    delete from friend
+    where usera_id = #{useraId,jdbcType=VARCHAR} and userb_id = #{userbId,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="ssm.po.Friend" >
+    insert into friend (id, usera_id, userb_id, 
+      add_time)
+    values (#{id,jdbcType=INTEGER}, #{useraId,jdbcType=VARCHAR}, #{userbId,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Friend" >
+    insert into friend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="useraId != null" >
+        usera_id,
+      </if>
+      <if test="userbId != null" >
+        userb_id,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="useraId != null" >
+        #{useraId,jdbcType=VARCHAR},
+      </if>
+      <if test="userbId != null" >
+        #{userbId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Friend" >
+    update friend
+    <set >
+      <if test="useraId != null" >
+        usera_id = #{useraId,jdbcType=VARCHAR},
+      </if>
+      <if test="userbId != null" >
+        userb_id = #{userbId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.po.Friend" >
+    update friend
+    set usera_id = #{useraId,jdbcType=VARCHAR},
+      userb_id = #{userbId,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

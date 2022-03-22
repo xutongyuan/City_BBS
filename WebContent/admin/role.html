@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	 <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="js/themes/icon.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			color:#666;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+	</style>
+
+
+
+	</head>
+	
+		<div style="margin: 0 auto;width: 700px;margin-top: 30px;">
+
+			<table id="dg" title="权限配置" class="easyui-datagrid" style="width:700px;height:360px"
+				url="getRoleList"
+				toolbar="#toolbar" pagination="true"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+	
+		        <thead>
+		            <tr>
+		                <th field="roleId" width="50">角色ID</th>
+		                <th field="roleName" width="100">角色名称</th>
+		                <th field="rolePms" width="100">角色权限</th>
+		                <th field="roleDescription" width="280" align="right">角色描述</th>
+		               
+		            </tr>
+		        </thead>
+	    	</table>
+    	
+	    	<div id="toolbar">
+			   <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">新增角色</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑角色</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">删除角色</a>
+
+			</div>
+			
+			<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+			        closed="true" buttons="#dlg-buttons">
+			    <div class="ftitle">User Information</div>
+			    <form id="fm" method="post">
+			        <div class="roleId">
+			            <label>角色ID：</label>
+			            <input name="roleId" class="easyui-validatebox" required="true"  id="pmsid" style="float:right;">
+			        </div>
+			        <div class="roleName" style="clear:both;">
+			            <label>角色名称:</label>
+			            <input name="roleName" class="easyui-validatebox" required="true"  style="float:right;">
+			        </div>
+			         <div class="rolePms" style="clear:both;">
+			            <label>角色权限</label>
+			            <a href="#" class="easyui-linkbutton" iconCls="icon-search" style="float:right;" onclick="queryPermission()"></a>
+			            <input name="rolePms" id="rolePms" class="easyui-validatebox" required="true" type="number" style="float:right;width:143px">
+			        </div>
+			        
+			        <div class="roleDescription" style="clear:both;">
+			            <label>角色描述</label>
+			            <input name="roleDescription"  style="float:right;">
+			        </div>
+			        
+			    </form>
+			</div>
+			<div id="dlg-buttons">
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+			</div>
+    	</div>
+    	
+    	<!-- 查询权限id弹出窗口 -->
+    	<div id="winpermission" closed="true" class="easyui-window" title="选择用户权限" style="width:300px;height:250px;padding:5px;" buttons="dlg-buttons2">
+		   <table id="dgpermission" title="权限配置" class="easyui-datagrid" style="width:300px;height:175px"
+				url="getPermissionList"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+	
+		        <thead>
+		            <tr>
+		                <th field="pmsId" width="50px">权限ID</th>
+		                <th field="pmsForm" width="80px">权限标志</th>
+		                <th field="pmsDescription" width="170px">权限描述</th>
+
+		            </tr>
+		        </thead>
+	    	</table>
+	    	<div id="dlg-buttons2" style="height:175px">
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="selectPermission()">选择</a>
+			    
+			</div>
+		</div>
+    	
+    	<script type="text/javascript">
+		var url;
+		function newUser(){
+			$('#dlg').dialog('open').dialog('setTitle','New Role');
+			$('#fm').form('clear');
+			$("#pmsid").removeAttr("readonly","readonly");
+			url = 'saveRole';
+		}
+		function editUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Edit User');
+				$('#fm').form('load',row);
+				$("#pmsid").attr("readonly","readonly");
+				url = 'editRole?roleId='+row.roleId;
+			}
+		}
+		function saveUser(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					var result = JSON.parse(result);
+					$.each(result,function(index,item){
+						if (item =="success"){
+							$('#dlg').dialog('close');		// close the dialog
+							$('#dg').datagrid('reload');	// reload the user data
+							$.messager.show({
+								title: 'tip',
+								msg: '保存成功'
+							});
+						} else {
+							$.messager.show({
+								title: 'Error',
+								msg: '保存失败'
+							});
+						}
+					})
+					
+				}
+			});
+		}
+		function removeUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Are you sure you want to remove this user?',function(r){
+					if (r){
+						$.post('deleteRole',{roleId:row.roleId},function(result){
+							console.log(result);
+							$.each(result,function(index,item){
+								if (item=="success"){
+									$('#dg').datagrid('reload');	// reload the user data
+									$.messager.show({	// show error message
+										title: 'result',
+										msg: '删除成功'
+									});
+								} else {
+									$.messager.show({	// show error message
+										title: 'Error',
+										msg: '删除失败'
+									});
+								}
+							})
+							
+						},'json');
+					}
+				});
+			}
+		}
+		
+		function queryPermission(){
+			$('#winpermission').window('open');
+		}
+		function selectPermission(){
+			var row = $('#dgpermission').datagrid('getSelected');
+			$("#rolePms").val(row.pmsId);
+			$('#winpermission').window('close');
+	
+		}
+	</script>
+
+	</body>
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    
+    
+    <mvc:annotation-driven conversion-service="converterService" validator="validator" />
+<!-- 配置包扫描 （排除对service注解的注入）-->
+    <context:component-scan base-package="ssm" >
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    	 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    	<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>  -->
+    </context:component-scan>
+	<!-- 视图解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+		
+	</bean>
+
+	<!-- 加载自定绑定组件 -->
+	<bean id="converterService"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<property name="converters">
+			<list>
+				<bean class="ssm.util.converter.DateConverter" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- 校验器 -->
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>
+		<property name="validationMessageSource" ref="messageSource"></property>
+	</bean>
+	<!-- 错误信息资源 -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:config/springValidate</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="cacheSeconds" value="120"></property>
+	</bean>
+
+	<!-- 上传文件配置 -->
+	<!-- 此处id要求是 "multipartResolver" -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>5248800</value><!-- 单位是字节 -->
+		</property>
+	</bean>
+	
+	<mvc:interceptors>  
+	
+  <!-- 配置指定页面拦截器 -->  
+  <mvc:interceptor>  
+      <mvc:mapping path="/**"/>  
+      <bean class="ssm.util.filter.LoginHandlerIntercepter"></bean>  
+  </mvc:interceptor>  
+ </mvc:interceptors>
+</beans>

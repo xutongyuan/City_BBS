@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.NewsMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.News" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="post_id" property="postId" jdbcType="VARCHAR" />
+    <result column="post_nickname" property="postNickname" jdbcType="VARCHAR" />
+    <result column="recev_id" property="recevId" jdbcType="VARCHAR" />
+    <result column="recev_nickname" property="recevNickname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="looked" property="looked" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, post_id,post_nickname, recev_id, recev_nickname,type, status, time, looked
+  </sql>
+  
+  <select id="selectByPrimaryId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where id = #{id,jdbcType=INTEGER} 
+  </select>
+  
+  <select id="selectByPostIdandRecevId" resultMap="BaseResultMap" parameterType="ssm.po.News" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where post_id = #{postId,jdbcType=VARCHAR} and recev_id = #{recevId,jdbcType=VARCHAR}
+     and status is null
+  </select>
+  
+  <select id="selectByPostIdAndType" resultMap="BaseResultMap" parameterType="ssm.po.News" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where post_id = #{postId,jdbcType=VARCHAR} and type = #{type,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByRecevIdAndType" resultMap="BaseResultMap" parameterType="ssm.po.News" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where recev_id = #{recevId,jdbcType=VARCHAR} and type = #{type,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.News" >
+    insert into news (id, post_id,post_nickname, recev_id, recev_nickname,
+      type, status, time, 
+      looked)
+    values (#{id,jdbcType=INTEGER}, #{postId,jdbcType=VARCHAR},#{postNickname,jdbcType=VARCHAR}, #{recevId,jdbcType=VARCHAR}, 
+      #{recevNickname,jdbcType=VARCHAR},#{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{time,jdbcType=VARCHAR}, 
+      #{looked,jdbcType=VARCHAR})
+  </insert>
+ 
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.News" >
+    update news
+    <set >
+      <if test="postId != null" >
+        post_id = #{postId,jdbcType=VARCHAR},
+      </if>
+      <if test="postNickname != null" >
+        post_nickname = #{postNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="recevId != null" >
+        recev_id = #{recevId,jdbcType=VARCHAR},
+      </if>
+      <if test="recevNickname != null" >
+        recev_nickname = #{recevNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="looked != null" >
+        looked = #{looked,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>

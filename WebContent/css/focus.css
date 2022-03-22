@@ -1,0 +1,167 @@
+.FocusImg {
+	width: 504px;
+	height: 293px;
+	position: relative;
+	float: left;
+}
+
+.FocusImg .BigPic {
+	padding: 8px 0 0 8px;
+	text-align: center;
+	height: 277px;
+	width: 412px;
+	float: left;
+	overflow: hidden;
+}
+
+.FocusImg .BigPic img {
+	width: 412px;
+	height: 277px;
+	display: block;
+	margin: 0 auto;
+}
+
+.FocusImg .TitleBg {
+	height: 61px;
+	width: 412px;
+	position: absolute;
+	top: 224px;
+	left: 8px;
+	background: #333;
+	filter: Alpha(Opacity=50);
+	opacity: 0.50;
+	z-index: 8;
+}
+
+.FocusImg .TitleBox {
+	width: 400px;
+	height: 23px;
+	position: absolute;
+	top: 230px;
+	left: 20px;
+	font-size: 16px;
+	color: #fff;
+	line-height: 23px;
+	z-index: 20;
+	font-family: "黑体"
+}
+
+.FocusImg .MemoBox {
+	width: 400px;
+	position: absolute;
+	top: 252px;
+	left: 20px;
+	font-size: 12px;
+	color: #e6f2ff;
+	line-height: 23px;
+	z-index: 20;
+}
+
+.FocusImg a:link,
+.FocusImg a:visited {
+	color: #fff;
+	text-decoration: none;
+}
+
+.FocusImg a:hover {
+	color: #fff;
+	text-decoration: underline;
+}
+
+.FocusImg .SmallPics {
+	float: left;
+	overflow: hidden;
+	zoom: 1;
+}
+
+.FocusImg .SmallPics span {
+	width: 77px;
+	height: 71px;
+	zoom: 1;
+	overflow: hidden;
+	position: relative;
+	margin-top: 2px;
+	display: block;
+	cursor: pointer;
+}
+
+.FocusImg .SmallPics span img {
+	width: 59px;
+	height: 59px;
+	margin-top: 6px;
+	margin-left: 14px;
+}
+
+.FocusImg .SmallPics span b {
+	display: block;
+	cursor: pointer;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 77px;
+	height: 71px;
+	background: url(/City_BBS/images/focusPic/bf_m_01.png) no-repeat 0 0;
+	
+}
+
+.FocusImg .SmallPics span.selected b {
+	background: url(/City_BBS/images/focusPic/bf_m_02.png) no-repeat 0 0;
+	
+}
+#focus_row {
+	clear: both;
+	background: url(/City_BBS/images/focusPic/yh_fr_03_01_01.png) no-repeat 0 0;
+	height: 293px;
+	width: 1024px;
+	margin: auto;
+	overflow: hidden;
+	zoom: 1
+}
+.top_news h2,.top_news h2 a:link,.top_news h2 a:visited,.top_news h2 a:hover{
+    color: #C93236;
+    font-family: "黑体";
+    font-size: 20px;
+    text-align: center;
+    font-weight: normal;
+}
+a:hover, a:active, a:focus {
+    color: #f00;
+    text-decoration: underline;
+}
+.col2 .m{ float:right; padding:0 10px; width:420px}
+.today{ color:#8095B7; text-align:right; margin-top:-44px}
+.hidden_txt{text-indent:-999em;overflow:hidden}
+
+
+/*论坛排行*/
+ol, ul {
+    list-style: none;
+}
+.col3{
+	clear: both;
+	width: 1024px;
+	height: auto;
+	margin: auto;
+}
+.col3 .m {
+    float: left;
+    width: 380px;
+    overflow: hidden;
+}
+.col3 .box_h {
+    background: url(http://i2.sinaimg.cn/book/main/index09/090921/tit_ms.png) no-repeat 0 0;
+    height: 32px;
+    line-height: 32px;
+}
+.col3 .m .box_h {
+    background-image: url(/City_BBS/images/sort/tit_c.png);
+    position: relative;
+    margin: 0 40px 0 0;
+}
+.box_h>h2{
+	margin-left: 20px;
+	color:#6FA5FD
+}
+.ttx .txt_li{ padding:11px 0 12px; background:url(http://i1.sinaimg.cn/book/main/index09/090921/col3_m_dot.png)  repeat-x 0 100%; margin:0 10px;zoom:1; clear:both;}
+.ttx .txt_li li{ font-size:14px; padding-left:9px;line-height:26px;height:26px;}
+.ttx .txt_li li .des{ font-size:12px;color:#444444; float:right}

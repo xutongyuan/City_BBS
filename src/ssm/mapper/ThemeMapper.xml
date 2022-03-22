@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.ThemeMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Theme" >
+    <id column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="posting_time" property="postingTime" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="good_post" property="goodPost" jdbcType="VARCHAR" />
+    <result column="is_nav" property="isNav" jdbcType="VARCHAR" />
+    <result column="is_banner" property="isBanner" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    post_id, title, content, posting_time, user_id, area,good_post
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from theme
+    where post_id = #{postId,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 最近回复贴 -->
+  <select id="selectPostByRecentBack" resultMap="BaseResultMap"  >
+    select t.post_id,t.user_id,t.title,t.area,tb.reply_time posting_time
+    from theme_back tb,theme t 
+    where tb.back_theme_id =t.post_id ORDER BY tb.reply_time DESC 
+  </select>
+  
+  <!-- 最近发帖  -->
+  <select id="selectThemeByRecentPost" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   select t.post_id,t.user_id,t.title,t.content,t.area,t.posting_time
+   from theme t
+   <where>
+     <if test="isNav!=null">
+       t.is_nav = #{isNav,jdbcType=VARCHAR}
+     </if>
+   </where>
+   ORDER BY t.posting_time DESC
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from theme
+    where post_id = #{postId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" keyProperty="postId" useGeneratedKeys="true" parameterType="ssm.po.Theme" >
+    insert into theme
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="postId != null" >
+        post_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="postingTime != null" >
+        posting_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="goodPost != null" >
+        good_post,
+      </if>
+      <if test="isNav != null" >
+        is_nav,
+      </if>
+      <if test="isBanner != null" >
+        is_banner,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="postId != null" >
+        #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postingTime != null" >
+        #{postingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+      <if test="goodPost != null" >
+        #{goodPost,jdbcType=VARCHAR},
+      </if>
+      <if test="isNav != null" >
+        #{isNav,jdbcType=VARCHAR},
+      </if>
+      <if test="isBanner != null" >
+        #{isBanner,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Theme" >
+    update theme
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="postingTime != null" >
+        posting_time = #{postingTime,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=INTEGER},
+      </if>
+      <if test="goodPost != null" >
+        good_post = #{goodPost,jdbcType=VARCHAR},
+      </if>
+      <if test="isNav != null" >
+        isNav = #{isNav,jdbcType=VARCHAR},
+      </if>
+      <if test="isBanner != null" >
+        isBanner = #{isBanner,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+  </mapper>

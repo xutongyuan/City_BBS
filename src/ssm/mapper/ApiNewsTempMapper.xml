@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.ApiNewsTempMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.ApiNewsTemp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="category" property="category" jdbcType="VARCHAR" />
+    <result column="src" property="src" jdbcType="VARCHAR" />
+    <result column="pic" property="pic" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="weburl" property="weburl" jdbcType="VARCHAR" />
+    <result column="creation_date" property="creationDate" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="VARCHAR" />
+    <result column="sync" property="sync" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    post_id, title, content, posting_time, user_id, area,good_post
+  </sql>
+
+<!--  查询未发布新闻-->
+  <select id="findNoPostNews" resultMap="BaseResultMap"  >
+    select * from api_news_temp
+    where sync = '0' order by time
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from api_news_temp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" keyProperty="id" useGeneratedKeys="true" parameterType="ssm.po.ApiNewsTemp" >
+    insert into api_news_temp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="category != null" >
+        category,
+      </if>
+      <if test="src != null" >
+        src,
+      </if>
+      <if test="pic != null" >
+        pic,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="weburl != null" >
+        weburl,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="sync != null" >
+        sync,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null" >
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null" >
+        #{src,jdbcType=VARCHAR},
+      </if>
+      <if test="pic != null" >
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="weburl != null" >
+        #{weburl,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=VARCHAR},
+      </if>
+      <if test="sync != null" >
+        #{sync,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Theme" >
+    update api_news_temp
+    set sync = 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  </mapper>

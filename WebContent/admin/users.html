@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+	 <link rel="stylesheet" type="text/css" href="http://www.jeasyui.net/Public/js/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="js/themes/icon.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.net/Public/js/easyui/jquery.easyui.min.js"></script>
+
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			color:#666;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+	</style>
+
+
+
+	</head>
+	
+		<div style="margin: 0 auto;width: 700px;margin-top: 30px;">
+
+			<table id="dg" title="权限配置" class="easyui-datagrid" style="width:700px;height:360px"
+				url="getUserList"
+				toolbar="#toolbar" pagination="true"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+	
+		        <thead>
+		            <tr>
+		                <th field="email" width="100px">用户名</th>
+		                <th field="nickname" width="110px">昵称</th>
+		                <th field="roleId" width="50px">角色编号</th>
+		                <th field="pmsArea" width="100px">权限版块</th>
+		                <th field="registerTime" width="140px">注册时间</th>
+		                <th field="loginTime" width="140px">上次登录时间</th>
+     
+		            </tr>
+		        </thead>
+	    	</table>
+    	
+	    	<div id="toolbar">
+				<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">编辑角色</a>
+			</div>
+			
+			<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+			        closed="true" buttons="#dlg-buttons">
+			    <div class="ftitle">User Information</div>
+			    <form id="fm" method="post">
+			        <div >
+			            <label>用户名:</label>
+			            <input name="email" disabled style="float:right;">
+			        </div>
+			        <div  style="clear:both;">
+			            <label>昵称:</label>
+			            <input name="nickname" disabled style="float:right;">
+			        </div>
+			         <div  style="clear:both;">
+			            <label>角色编号:</label>
+			             <a href="#" class="easyui-linkbutton" iconCls="icon-search" style="float:right;" onclick="queryRole()"></a>
+			            <input name="roleId" id="roleId" type="number" style="float:right; width:143px">
+			           
+			        </div>
+			        <div style="clear:both;">
+			            <label>权限版块:</label>
+			            <a href="#" class="easyui-linkbutton" iconCls="icon-search" style="float:right;" onclick="queryArea()"></a>
+			            <input name="pmsArea" id="pmsArea" style="float:right; width:143px" >
+			        </div>
+			        
+			        <div  style="clear:both;">
+			            <label>注册时间:</label>
+			            <input name="registerTime" disabled  style="float:right;">
+			        </div>
+			        <div   style="clear:both;">
+			            <label>上次登录时间:</label>
+			            <input name="loginTime" disabled  style="float:right;">
+			        </div>
+			        
+			    </form>
+			</div>
+			<div id="dlg-buttons">
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+			</div>
+    	</div>
+    	<!-- 查询角色id弹出窗口 -->
+    	<div id="winrole" closed="true" class="easyui-window" title="选择用户权限" style="width:220px;height:250px;padding:5px;" buttons="dlg-buttons2">
+		   <table id="dgrole" title="权限配置" class="easyui-datagrid" style="width:200px;height:175px"
+				url="getRoleList"
+				rownumbers="true" fitColumns="true" singleSelect="true">
+	
+		        <thead>
+		            <tr>
+		                <th field="roleId" width="50px">角色ID</th>
+		                <th field="roleName" width="100px">角色名称</th>
+
+		            </tr>
+		        </thead>
+	    	</table>
+	    	<div id="dlg-buttons2" style="height:175px">
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="selectRole()">选择</a>
+			    
+			</div>
+		</div>
+    	
+    	<!-- 查询版块弹出窗口 -->
+    	<div id="winarea" closed="true" class="easyui-window" title="选择权限版块" style="width:350px;height:200px;padding:5px;" buttons="dlg-buttons3">
+    		<div id="dlg-buttons3">
+			    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="selectArea()">选择</a>
+			</div>
+    	</div>
+    	
+    	<script type="text/javascript">
+		var url;
+		
+		function editUser(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Edit User');
+				$('#fm').form('load',row);
+				$("#pmsid").attr("readonly","readonly");
+				url = 'editUsers?userId='+row.userId;
+			}
+		}
+		function saveUser(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					return $(this).form('validate');
+				},
+				success: function(result){
+					var result = JSON.parse(result);
+					$.each(result,function(index,item){
+						if (item =="success"){
+							$('#dlg').dialog('close');		// close the dialog
+							$('#dg').datagrid('reload');	// reload the user data
+							$.messager.show({
+								title: 'tip',
+								msg: '保存成功'
+							});
+						} else {
+							$.messager.show({
+								title: 'Error',
+								msg: '保存失败'
+							});
+						}
+					})
+					
+				}
+			});
+		}
+		
+		
+		function queryRole(){
+			$('#winrole').window('open');
+		}
+		function queryArea(){
+			$('#winarea').window('open');
+			
+			//使checkbox选上
+			var str = $("#pmsArea").val();
+			var arr = str.split(",");
+			console.log(arr);
+			$("input:checkbox").each(function(){
+				for(var key in arr){
+					if(arr[key]==$(this).val()){
+						$(this).attr("checked","checked");
+						console.log(key);
+					}
+				}
+			})
+		}
+		function selectRole(){
+			var row = $('#dgrole').datagrid('getSelected');
+			$("#roleId").val(row.roleId);
+			$('#winrole').window('close');
+	
+		}
+		function selectArea(){
+			
+			var areaval = "";
+			$("#winarea > input:checked").each(function(index,item){
+				areaval = areaval+$(this).val()+","
+			})
+			var newval = areaval.substr(0,areaval.length-1);
+			$("#pmsArea").val(newval);
+			$('#winarea').window('close');
+	
+		}
+		//动态生成checkbox
+		var checkObject = {"1":"我说潮州","2":"找男友","3":"找女友","4":"骑行交友","5":"摄影交友","6":"电影交友",
+				"7":"以茶会友","8":"聚会party","9":"创业交流","10":"健身交流","11":"体育交流","12":"爱吃一族",
+				"13":"爱车一族","14":"家有儿女","15":"家有宠物","16":"游记分享","17":"游戏讨论","18":"艺术园地",
+				"19":"跳蚤市场","20":"新闻时事","21":"开心一刻","22":"灌水专区","30":"搜索页面"};
+	
+		$(document).ready(function(){
+			
+			$.each(checkObject,function(index,item){
+				var oCheckbox=document.createElement("input");
+				var myText=document.createTextNode(item);
+				oCheckbox.setAttribute("type","checkbox");
+				oCheckbox.setAttribute("value",index);
+				
+				var mydiv=document.getElementById("winarea");
+				mydiv.appendChild(oCheckbox);
+				mydiv.appendChild(myText);
+				 if(index%4==0){	//四个checkbox一行
+					var br =  document.createElement("br");
+					mydiv.appendChild(br);
+				 }
+			})
+			
+		})
+		
+
+		
+	</script>
+
+	</body>
+</html>

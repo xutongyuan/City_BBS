@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.UserdetailMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.Userdetail" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="VARCHAR" />
+    <result column="SIGNATURE" property="signature" jdbcType="VARCHAR" />
+    <result column="IMAGE" property="image" jdbcType="VARCHAR" />
+    <result column="COUNTY" property="county" jdbcType="VARCHAR" />
+    <result column="LOGIN_TIME" property="loginTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, PHONE, NICKNAME, SEX, SIGNATURE, IMAGE, COUNTY, LOGIN_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERDETAIL
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByNickName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERDETAIL
+    where nickname like #{nucknameSql,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByPmsArea" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select ud.nickname from users u,userdetail ud 
+    where u.user_id=ud.user_id and role_id='2' 
+    and pms_area= #{pmsArea,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByUserIdjihe" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from USERDETAIL
+    where USER_ID in 
+	<foreach collection="sqlList" index="index" item="item" open="(" separator="," close=")">
+		#{item}
+	</foreach>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from USERDETAIL
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.Userdetail" >
+    insert into USERDETAIL (USER_ID, PHONE, NICKNAME, 
+      SEX, SIGNATURE, IMAGE, 
+      COUNTY, LOGIN_TIME)
+    values (#{userId,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{county,jdbcType=VARCHAR}, #{loginTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.Userdetail" >
+    insert into USERDETAIL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="nickname != null" >
+        NICKNAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="signature != null" >
+        SIGNATURE,
+      </if>
+      <if test="image != null" >
+        IMAGE,
+      </if>
+      <if test="county != null" >
+        COUNTY,
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.po.Userdetail" >
+    update USERDETAIL
+    <set >
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        SIGNATURE = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        IMAGE = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null" >
+        COUNTY = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        LOGIN_TIME = #{loginTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+
+</mapper>

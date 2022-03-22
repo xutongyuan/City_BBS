@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.PostCountMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.PostCount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="read_count" property="readCount" jdbcType="INTEGER" />
+    <result column="back_count" property="backCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, post_id, read_count, back_count
+  </sql>
+  <select id="selectByPostId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from post_count
+    where post_id = #{postId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from post_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="ssm.po.PostCount" >
+    insert into post_count (id, post_id, read_count, 
+      back_count)
+    values (#{id,jdbcType=INTEGER}, #{postId,jdbcType=INTEGER}, #{readCount,jdbcType=INTEGER}, 
+      #{backCount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.po.PostCount" >
+    insert into post_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="postId != null" >
+        post_id,
+      </if>
+      <if test="readCount != null" >
+        read_count,
+      </if>
+      <if test="backCount != null" >
+        back_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null" >
+        #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="backCount != null" >
+        #{backCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPostId" parameterType="ssm.po.PostCount" >
+    update post_count
+    <set >
+      <if test="postId != null" >
+        post_id = #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="readCount != null" >
+        read_count =read_count + #{readCount,jdbcType=INTEGER},
+      </if>
+      <if test="backCount != null" >
+        back_count = #{backCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where post_id = #{postId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

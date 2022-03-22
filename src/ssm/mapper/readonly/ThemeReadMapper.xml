@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.mapper.readonly.ThemeReadMapper" >
+  <resultMap id="BaseResultMap" type="ssm.po.readonly.ThemeRead" >
+    <id column="post_id" property="postId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="posting_time" property="postingTime" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="INTEGER" />
+    <result column="good_post" property="goodPost" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="readcount" property="readcount" jdbcType="INTEGER" />
+    <result column="backcount" property="backcount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    t.post_id, t.title, t.content, t.posting_time, t.user_id, t.area,t.good_post,u.nickname,u.image,p.read_count readcount,p.back_count backcount
+ 
+  </sql>
+  <select id="selectAllByArea" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+      from theme t,userdetail u ,post_count p
+     where t.user_id = u.user_id  and t.post_id = p.post_id
+     and t.area = #{area,jdbcType=INTEGER} order by posting_time DESC
+  </select>
+  
+  <select id="selectAllByGood" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+      from theme t,userdetail u ,post_count p
+     where t.user_id = u.user_id  and t.post_id = p.post_id
+     and t.good_post='Y' order by posting_time DESC
+  </select>
+
+    <select id="selectAllByGoodAndArea" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List" />
+        from theme t,userdetail u ,post_count p
+        where t.user_id = u.user_id  and t.post_id = p.post_id
+        and t.good_post='Y' and t.area = #{area,jdbcType=INTEGER}  order by posting_time DESC
+    </select>
+  
+  <select id="selectPostById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select 
+    <include refid="Base_Column_List" />
+      from theme t,userdetail u ,post_count p
+     where t.user_id = u.user_id  and t.post_id = p.post_id
+     and t.post_id = #{postId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAllBySearch" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    <include refid="Base_Column_List" />
+      from theme t,userdetail u ,post_count p
+     where t.user_id = u.user_id  and t.post_id = p.post_id
+     and t.title like #{sql,jdbcType=VARCHAR} order by posting_time DESC
+  </select>
+  
+
+  
+   <select id="selectThemeByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select 
+    t.user_id,t.post_id,t.title,t.content,t.posting_time,t.area,pc.read_count readcount,pc.back_count backcount
+       from theme t,post_count pc
+	where t.post_id = pc.post_id and t.user_id =  #{userId,jdbcType=VARCHAR} 
+  </select>
+  
+  <select id="selectThemeByUserIdAndGood" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select t.post_id,t.title,t.content,t.posting_time,t.area,pc.read_count readcount,pc.back_count backcount
+from theme t,post_count pc
+	where t.post_id = pc.post_id and t.good_post='Y' and t.user_id =  #{userId,jdbcType=VARCHAR} 
+  </select>
+ 
+</mapper>

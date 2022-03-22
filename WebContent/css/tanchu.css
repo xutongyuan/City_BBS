@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+
+html,body{
+	width:100%;
+	_width:auto;
+	_height:auto;
+}
+*{
+	margin:0 auto;
+	padding:0;
+}
+/*黑色遮罩*/
+.black_bg{
+	width:100%;
+	height:100%;
+	position:fixed;
+	_position:absolute;
+	left:0;
+	top:0;
+	background:rgba(0, 0, 0, 0.3)!important;
+	filter:Alpha(opacity=30); 
+	background:#000;
+	z-index:996;
+}
+/*白色遮罩*/
+.white_bg{
+	width:100%;
+	height:100%;
+	position:fixed;
+	_position:absolute;
+	left:0;
+	top:0;
+	background:rgba(255, 255, 255, 0.3)!important;
+	filter:Alpha(opacity=30); 
+	background:#fff;
+	z-index:996;
+}
+
+/*弹出框*/
+.tanchu_box{
+	position:fixed;
+	_position:absolute;
+	border:6px solid #cdcdcd;
+	border-radius:6px;
+	background:#fff;
+	display:block;
+	z-index:9999;
+	margin:0 auto;
+	padding:0;
+}
+
+.tanchu_title{
+	width:100%;
+	height:34px;
+	float:left;
+	background:#f6f6f6;
+	border-bottom:1px solid #d7d7d7;
+	margin-bottom:5px
+}
+.tanchu_title font{
+	width:auto;
+	height:35px;
+	line-height:35px;
+	font-size:16px;
+	color:#666;
+	font-weight:bold;
+	margin-left:10px;
+	float:left;
+}
+
+/*loading...*/
+.loading_box{
+	position:fixed;
+	display:block;
+	z-index:998;
+	margin:0 auto;
+	padding:0;
+}
+.loading_box img{
+	float:left;
+	width:auto;
+	height:80px;
+}
+.loading_box font{
+	float:left;
+	font-size:25px;
+	color:#fff;
+	font-weight:bold;
+	width:auto;
+	height:80px;
+	line-height:80px;
+	margin-left:20px;
+}
+
+/*关闭按钮*/
+.close_btn{
+	font-size:20px;   
+	font-weight:700;
+	height:35px;   
+	display:block;
+	cursor:pointer;
+	z-index:999;
+	float:right;
+	margin-right:5px;
+}
+.close_btn img{
+	width:25px;
+	height:25px;
+	float:left;
+	margin-top:5px;
+}
+
+/*弹出图片*/
+.tanchu_pic_box{
+	position:fixed;
+	background:#fff;
+	display:block;
+	z-index:998;
+	border:5px solid #fff;
+	border-radius:5px;
+}
+.tanchu_pic_box img{
+	width:auto;
+	height:auto;
+	max-height:700px;
+	float:left;
+}
