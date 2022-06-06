@@ -5,25 +5,23 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import ssm.task.api.NewsApi;
 import ssm.task.service.TaskService;
 
 @Service
 @EnableScheduling
-public class TimerTask {
+public class TimerTasks {
 
-    private  final Logger logger = LoggerFactory.getLogger(TimerTask.class);
+    private  final Logger logger = LoggerFactory.getLogger(TimerTasks.class);
 
     @Autowired
     TaskService taskService;
-    @Scheduled(cron="0 0 0,4,8,12,16,20 * * ? ")  	 // 每四小时更新一次
-    public void test(){
+    @Scheduled(cron="0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * ? ")  	 // 每2小时更新一次
+    public void newsTask(){
         try {
             //要执行的任务逻辑写在这里
             logger.info("同步最新新闻到中间表--------------start------------------");
-            int rows = taskService.addNewsTemp();
+            int rows = taskService.addNewsTemp(null);
             logger.info("同步新闻到中间表，共{0}条记录------end---------------------",rows);
             logger.info("自动发布新闻 start ------------------------------------");
             int postRows = taskService.autoPost();

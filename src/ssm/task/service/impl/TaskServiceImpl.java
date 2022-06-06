@@ -24,11 +24,11 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     ContentCtr contentCtr;
     @Override
-    public int addNewsTemp() throws Exception {
+    public int addNewsTemp(String chan) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(new Date());
-        List<ApiNewsTemp> list = NewsApi.NewGet();
+        List<ApiNewsTemp> list = NewsApi.NewGet(chan);
         for (ApiNewsTemp entity:list
              ) {
             if(entity.getContent().length()>10000){//超过1000字，后面不保存

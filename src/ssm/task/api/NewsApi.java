@@ -15,12 +15,14 @@ public class NewsApi {
 //   新闻api接口，用的是这个网站，可以自己上去注册，每天免费调用100次 https://api.binstd.com/
     public static final String APPKEY = "fddebd6ceae00d35";// 你的appkey
     public static final String URL = "https://api.binstd.com/news/get";
-    public static final String channel = "头条";// utf8  新闻频道(头条,财经,体育,娱乐,军事,教育,科技,NBA,股票,星座,女性,健康,育儿)
+//    public static final String channel = "头条";// utf8  新闻频道(头条,财经,体育,娱乐,军事,教育,科技,NBA,股票,星座,女性,健康,育儿)
+    public static final String[] channel = {"头条","财经","体育","娱乐","军事","教育","科技","NBA","股票","星座","女性","健康","育儿"};
     public static final int num = 5;// 数量 默认10，最大40
+    public static int curIndex = 0;
 
-    public static List<ApiNewsTemp> NewGet() throws Exception {
+    public static List<ApiNewsTemp> NewGet(String chan) throws Exception {
         String result = null;
-        String url = URL + "?channel=" + URLEncoder.encode(channel, "utf-8") + "&num=" + num + "&appkey=" + APPKEY;
+        String url = URL + "?channel=" + URLEncoder.encode(chan==null?channel[curIndex++ % channel.length]:chan, "utf-8") + "&num=" + num + "&appkey=" + APPKEY;
         List<ApiNewsTemp> entityList = new ArrayList<>();
         try {
             result = HttpUtil.sendGet(url, "utf-8");
