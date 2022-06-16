@@ -151,6 +151,7 @@
         <div class="foot_img" id="div_123"><span id="_ideConac"><a href="javascript:void(0)" target="_blank"><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
         <div id="copyr">
 <%--       		    版权by:五邑大学 160810班 许桐源 &nbsp;仅用于毕业设计--%>
+	粤ICP备2022047901
         </div>
     </div>
 	</div>

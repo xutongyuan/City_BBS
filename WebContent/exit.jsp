@@ -37,7 +37,7 @@
 	<script type="text/javascript">
 	
 	function back(){
-		if(document.referrer!="http://localhost:8080/City_BBS/content/showDetail"){
+		if(document.referrer!="http://localhost:8080/content/showDetail"){
 			window.location.href = document.referrer;
 			
 		}else{

@@ -84,7 +84,8 @@
 			<div class="inline-block"><img src="<%=basePath%>images/home/topczlt.gif"></div>
 			<div class="inline-block copyright">
 				<p><a href="#">关于我们</a> | <a href="http://www.baidu.com">微博</a> | <a href="#">隐私政策</a> | <a href="#">人员招聘</a></p>
-				<p> Copyright © 2018 XTY毕设</p>
+<%--				<p> Copyright © 2018 XTY毕设</p>--%>
+				<p> 粤ICP备2022047901</p>
 			</div>
 		</div>
 	</div>

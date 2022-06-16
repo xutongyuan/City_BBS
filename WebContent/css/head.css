@@ -44,7 +44,7 @@ a:hover{
 	float:left;
 	width:100%;
 	height:100px;
-	background:url(/City_BBS/images/home/headtopBG1.png);
+	background:url(/images/home/headtopBG1.png);
 }
 .allsearch{
 	width:auto;
@@ -112,7 +112,7 @@ a:hover{
 	border-top:1px solid #999;
 	border-bottom:1px solid #999;
 	border-right:1px solid #999;
-	background:url(/City_BBS/images/home/btnBG.gif);
+	background:url(/images/home/btnBG.gif);
 }
 .headnav{
 	margin:0;
@@ -242,7 +242,7 @@ a:hover{
 	float:left;	
 	font-size:14px;
 	color:#666;
-	background:url(/City_BBS/images/home/line.png) right 7px no-repeat;
+	background:url(/images/home/line.png) right 7px no-repeat;
 }
 .headlist .nbg{
 	background:none;
@@ -280,7 +280,7 @@ a:hover{
 	width:100%;
 	height:40px;
 	border:1px solid #dedede;
-	background:url(/City_BBS/images/home/headfootBG.gif);
+	background:url(/images/home/headfootBG.gif);
 }
 .headfoot a, headfoot a:link, headfoot a:visited{
 	color:#555;

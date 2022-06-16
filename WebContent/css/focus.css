@@ -100,17 +100,17 @@
 	top: 0;
 	width: 77px;
 	height: 71px;
-	background: url(/City_BBS/images/focusPic/bf_m_01.png) no-repeat 0 0;
+	background: url(/images/focusPic/bf_m_01.png) no-repeat 0 0;
 	
 }
 
 .FocusImg .SmallPics span.selected b {
-	background: url(/City_BBS/images/focusPic/bf_m_02.png) no-repeat 0 0;
+	background: url(/images/focusPic/bf_m_02.png) no-repeat 0 0;
 	
 }
 #focus_row {
 	clear: both;
-	background: url(/City_BBS/images/focusPic/yh_fr_03_01_01.png) no-repeat 0 0;
+	background: url(/images/focusPic/yh_fr_03_01_01.png) no-repeat 0 0;
 	height: 293px;
 	width: 1024px;
 	margin: auto;
@@ -154,7 +154,7 @@ ol, ul {
     line-height: 32px;
 }
 .col3 .m .box_h {
-    background-image: url(/City_BBS/images/sort/tit_c.png);
+    background-image: url(/images/sort/tit_c.png);
     position: relative;
     margin: 0 40px 0 0;
 }
