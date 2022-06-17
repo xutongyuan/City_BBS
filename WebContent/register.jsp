@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>潮州交友论坛-注册</title>
 <%
  String path = request.getContextPath();
  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -83,7 +83,7 @@
 		<div class="dblock">
 			<div class="inline-block"><img src="<%=basePath%>images/home/topczlt.gif"></div>
 			<div class="inline-block copyright">
-				<p><a href="#">关于我们</a> | <a href="http://www.baidu.com">微博</a> | <a href="#">隐私政策</a> | <a href="#">人员招聘</a></p>
+				<p><a href="#">关于我们</a> | <a href="http://www.weiaj.com">微博</a> | <a href="#">隐私政策</a> | <a href="#">人员招聘</a></p>
 <%--				<p> Copyright © 2018 XTY毕设</p>--%>
 				<p> 粤ICP备2022047901</p>
 			</div>

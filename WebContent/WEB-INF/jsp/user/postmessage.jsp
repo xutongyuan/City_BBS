@@ -24,6 +24,7 @@
 <base href="<%=basePath%>">
 <link href="css/tanchu.css" rel="stylesheet" type="text/css" />
 </head>
+<title>潮州交友论坛-站内信</title>
 <body>
 <jsp:include page="frame_left.jsp"></jsp:include>
 

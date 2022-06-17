@@ -9,6 +9,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+    <title>潮州交友论坛-用户空间</title>
 <%
 		String path = request.getContextPath();
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -146,10 +147,7 @@
         $("#s_search span").html("版块");
     }
     $(document).ready(function () {
-        
-        $.post("/Home/loginInfo.ashx?url=" + encodeURIComponent(encodeURIComponent(window.location.href)), {}, function (data) {
-            $("#topalls_div").append(data);
-        });
+
         
         var login_popupStatus = 0;
         function login_loadPopup() {
@@ -334,7 +332,7 @@
                                         <strong>回复的内容</strong>：<br />
                                         <span></span><p>${list.backcontent }</p>
                                         
-                                        <img src="http://wscz.chaozhou.gov.cn/controls/ueditor/dialogs/emotion/images/jx2/j_0058.gif" />
+<%--                                        <img src="http://wscz.chaozhou.gov.cn/controls/ueditor/dialogs/emotion/images/jx2/j_0058.gif" />--%>
                                         
                                     </div>
                                 </div>

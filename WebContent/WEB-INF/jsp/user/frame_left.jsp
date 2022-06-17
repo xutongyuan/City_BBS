@@ -141,10 +141,7 @@
                     $("#s_search span").html("版块");
                 }
                 $(document).ready(function () {
-                    
-                    $.post("/Home/loginInfo.ashx?url=" + encodeURIComponent(encodeURIComponent(window.location.href)), {}, function (data) {
-                        $("#topalls_div").append(data);
-                    });
+
                     
                     var login_popupStatus = 0;
                     function login_loadPopup() {

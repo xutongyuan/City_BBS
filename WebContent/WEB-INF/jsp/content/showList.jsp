@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<title id="title">潮州交友论坛-</title>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -304,6 +304,7 @@
 					"19":"跳蚤市场","20":"新闻时事","21":"开心一刻","22":"灌水专区","30":"搜索页面"};
 		var curNum = "<%=pageContext.getAttribute("curArea") %>";
 		$("#bankuai").text(areaStr[curNum]);
+		$("#title").text("潮州交友论坛-"+areaStr[curNum]);
 		
 		$(".post").each(function(){
 			var postjing = $(this).find(".goodPost").val();

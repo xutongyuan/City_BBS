@@ -22,6 +22,7 @@
 	
 %>
 </head>
+<title>潮州交友论坛-好友管理</title>
 <body>
 <jsp:include page="frame_left.jsp"></jsp:include>
 <div class="home_rig">
