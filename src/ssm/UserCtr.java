@@ -354,21 +354,37 @@ public class UserCtr {
 	public ModelAndView otherUser(String userId,@RequestParam(defaultValue="1")Integer pageIndex){
 		ModelAndView mav = new ModelAndView();
 	
-		//他的发帖
+
 		IntegrationUsersRead iUsersRead  = loginSer.findIntegrationUsersRead(userId);
 		if(iUsersRead!=null){
 			mav.addObject("iudata", iUsersRead);
 		}
+		//他的发帖
 		PageHelper.startPage(pageIndex, 5);
-		Page<ThemeRead> tu = (Page<ThemeRead>)loginSer.findThemeReadByuserId(userId);	
+		Page<ThemeRead> tu = (Page<ThemeRead>)loginSer.findThemeReadByuserId(userId);
+		for (ThemeRead dto:tu
+			 ) {
+			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
+			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+		}
 		if(tu!=null){
 			mav.addObject("themelist", tu);
 		}
 		//他的回复
 		ArrayList<Theme_BackRead> theme_BackRead = loginSer.findTheme_BackRead(userId);
+		for (Theme_BackRead dto:theme_BackRead
+		) {
+			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
+			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+		}
 		mav.addObject("backlist", theme_BackRead);
 		//他的精华帖
 		ArrayList<ThemeRead> themeRead = loginSer.findThemeReadByuserIdAndGood(userId);
+		for (ThemeRead dto:themeRead
+		) {
+			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
+			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+		}
 		mav.addObject("jinglist", themeRead);
 		mav.setViewName("user/otheruser");
 		return mav;

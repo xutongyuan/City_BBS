@@ -278,7 +278,8 @@
                                <c:forEach items="<%=list %>" var="list"> 
                                 <div class="tiezi_box">
                                     <div class="tiezi_box_title">
-                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>
+<%--                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>--%>
+                                        <a href="javascript:window.open('content/showDetail?postId=${list.postId}&userId=${list.userId }&area=${list.area }','_self');">${list.title }</a>
                                     </div>
                                     <div class="tiezi_box_content">
                                         
@@ -313,7 +314,8 @@
                                 <c:forEach items="<%=list2 %>" var="list"> 
                                 <div class="tiezi_box">
                                     <div class="tiezi_box_title">
-                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>        
+<%--                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>        --%>
+                                            <a href="javascript:window.open('content/showDetail?postId=${list.postId}&userId=${list.userId }&area=${list.area }','_self');">${list.title }</a>
                                     </div>
                                     <div class="tiezi_box_content">
                                         ${list.content }
@@ -351,11 +353,12 @@
 								 --> 
                             </div>
                             <!--他的精华帖-->
-                            <div class="tagContent selectTag" id="tagContent0">
+                            <div class="tagContent" id="tagContent2">
                                <c:forEach items="<%=list3 %>" var="list"> 
                                 <div class="tiezi_box">
                                     <div class="tiezi_box_title">
-                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>
+<%--                                        <a href="javascript:doPost('content/showDetail',{'postId':'${list.postId }','userId':'${list.userId }','area':'${list.area }'});">${list.title }</a>--%>
+                                            <a href="javascript:window.open('content/showDetail?postId=${list.postId}&userId=${list.userId }&area=${list.area }','_self');">${list.title }</a>
                                         <span class="imgs">
                                         <img src="<%=basePath %>/images/showlist/jing.gif">
                                     </span>

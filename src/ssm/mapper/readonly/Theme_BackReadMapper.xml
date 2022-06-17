@@ -20,7 +20,8 @@
     select t.user_id,t.post_id,t.title,t.content,t.posting_time,t.area,tb.content backcontent,tb.reply_time ,pc.read_count,pc.back_count
 	from theme_back tb,theme t,post_count pc where tb.back_theme_id = t.post_id 
 	and tb.back_theme_id = pc.post_id 
-	and tb.user_id =  #{userId,jdbcType=VARCHAR} 
+	and tb.user_id =  #{userId,jdbcType=VARCHAR}
+    order by t.posting_time DESC
   </select>
  
 </mapper>

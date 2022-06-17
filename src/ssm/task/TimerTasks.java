@@ -16,7 +16,7 @@ public class TimerTasks {
 
     @Autowired
     TaskService taskService;
-    @Scheduled(cron="0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * ? ")  	 // 每2小时更新一次
+//    @Scheduled(cron="0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * ? ")  	 // 每2小时更新一次
     public void newsTask(){
         try {
             //要执行的任务逻辑写在这里
