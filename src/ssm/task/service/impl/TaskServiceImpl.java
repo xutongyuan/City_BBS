@@ -4,14 +4,17 @@ package ssm.task.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ssm.ContentCtr;
 import ssm.mapper.ApiNewsTempMapper;
 import ssm.po.ApiNewsTemp;
 import ssm.po.Theme;
+import ssm.service.ContentService;
 import ssm.task.api.NewsApi;
 import ssm.task.service.TaskService;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +26,11 @@ public class TaskServiceImpl implements TaskService {
     ApiNewsTempMapper apiNewsTempMapper;
     @Autowired
     ContentCtr contentCtr;
+    @Autowired
+    ContentService contentService;
+
     @Override
+    @Transactional
     public int addNewsTemp(String chan) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -41,10 +48,13 @@ public class TaskServiceImpl implements TaskService {
         return list.size();
     }
 
+    @Transactional
     public int autoPost() throws Exception {
         //获取未发布新闻
         List<ApiNewsTemp> noPostNews = apiNewsTempMapper.findNoPostNews();
 
+        List<ApiNewsTemp> apiNewsTemps = new ArrayList<>();
+        List<Theme> themes = new ArrayList<>();
         int i=0;
         for (ApiNewsTemp temp:noPostNews
              ) {
@@ -57,12 +67,20 @@ public class TaskServiceImpl implements TaskService {
                 theme.setIsNav("Y");
                 i++;
             }
-            boolean b = contentCtr.submitPost(theme, null);
-            if(b){
-                //更新标志
-                apiNewsTempMapper.updateByPrimaryKeySelective(temp);
-            }
+            themes.add(theme);
+            apiNewsTemps.add(temp);
         }
+       //发布帖子
+        themes.forEach(x->{
+            contentCtr.submitPost(x, null);
+        });
+        //更新中间表标志
+        apiNewsTemps.forEach(x->{
+            apiNewsTempMapper.updateByPrimaryKeySelective(x);
+        });
+        //有图片的更新到轮播图
+        contentService.insertBannerList(themes);
+
         return noPostNews.size();
     }
 }

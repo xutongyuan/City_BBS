@@ -3,8 +3,10 @@
 <%@ page import="ssm.ContentCtr" %>
 <%@ page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page import="org.springframework.web.context.WebApplicationContext" %>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page import="ssm.po.Theme" %>
 <%@ page import="java.util.Map" %>
+<%@ page import="ssm.po.Banner" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 	<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
@@ -35,9 +37,13 @@
 
 
 <%
-	//查询最新新闻贴
 	WebApplicationContext context= WebApplicationContextUtils.getWebApplicationContext(application);
 	ContentCtr contentCtr = (ContentCtr)context.getBean("contentCtr");
+
+	//查询轮播图内容
+	List<Banner> bannerList = contentCtr.getBannerList();
+
+	//查询最新新闻贴
 	Map<String, Theme> navPost = contentCtr.getNavPost();
 	Theme navPost1 = null;
 	Theme navPost2 =null;
@@ -81,30 +87,47 @@
 			</div>
 		</div>
 		<script language="javascript" type="text/javascript">
-		<!--//--><![CDATA[//><!--
+
 			var FocusPic_02 = new FocusPic("BigPic_01", "SmallPics_01",
 					"TitleBox_01", "MemoBox_01");
+		<%
+			if(bannerList!=null&&bannerList.size()>=4){
+				//轮播图4个以上动态展示，否则使用静态页面
+		%>
+			<c:forEach items="<%=bannerList%>" var="item">
+		FocusPic_02.Add(
+				"${item.bigPicUrl}",
+				"${item.bigPicUrl}",
+				"${item.postUrl}",
+				"${item.mainTitle}","${item.subTitle}");
+			</c:forEach>
+		<%
+			}else{
 
-			FocusPic_02.Add(
-				'https://n.sinaimg.cn/tech/crawl/116/w550h366/20220617/112b-13082aede2eb3e7a82a713d1e99f4791.jpg',
-				'https://n.sinaimg.cn/tech/crawl/116/w550h366/20220617/112b-13082aede2eb3e7a82a713d1e99f4791.jpg',
-				"content/showDetail?postId=2898&userId=cz4153&area=20",
-				"马斯克遭起诉 被指控操纵狗狗币金字塔式骗局","");
+		%>
 
-			FocusPic_02.Add(
-					'<%=basePath%>images/focusPic/U1335P59T310D3F4828DT20160314172438.jpg',
-					'<%=basePath%>images/focusPic/U1335P59T310D3F4829DT20160314172438.jpg',
-					"javascript:doPost('content/showDetail',{'postId':15,'userId':'cz8263','area':20 },'_blank');",
-					"蒙古军队维和蓝盔女兵亮相 个个丰满健硕！", "这肯定都是真的！");
-			FocusPic_02.Add(
-					'<%=basePath%>images/focusPic/U11828P59T310D4F4828DT20160106115944.jpg',
-					'<%=basePath%>images/focusPic/U11828P59T310D4F4829DT20160106115944.jpg',
-					"javascript:doPost('content/showDetail',{'postId':18,'userId':'cz8263','area':20 },'_blank');",
-					"复古气质美人摄影拍出浓郁油画感", "");
-			FocusPic_02.Add(
-					'<%=basePath%>images/focusPic/U2679P59T310D5F4828DT20160106115507.jpg',
-					'<%=basePath%>images/focusPic/U2679P59T310D5F4829DT20160106115507.jpg',
-					"javascript:doPost('content/showDetail',{'postId':19,'userId':'cz8263','area':20 },'_blank');", "CES开幕：同一个展会同一种残酷", "");
+		FocusPic_02.Add(
+				'<%=basePath%>images/focusPic/U3093P59T310D2F4828DT20150512163244.jpg',
+				'<%=basePath%>images/focusPic/U3093P59T310D2F4829DT20150512163244.jpg',
+				"javascript:doPost('content/showDetail',{'postId':17,'userId':'cz8263','area':20 },'_blank');",
+				"阅兵哪家强：各国阅兵旧照", "世界这么大阅兵谁更炫");
+		FocusPic_02.Add(
+				'<%=basePath%>images/focusPic/U1335P59T310D3F4828DT20160314172438.jpg',
+				'<%=basePath%>images/focusPic/U1335P59T310D3F4829DT20160314172438.jpg',
+				"javascript:doPost('content/showDetail',{'postId':15,'userId':'cz8263','area':20 },'_blank');",
+				"蒙古军队维和蓝盔女兵亮相 个个丰满健硕！", "这肯定都是真的！");
+		FocusPic_02.Add(
+				'<%=basePath%>images/focusPic/U11828P59T310D4F4828DT20160106115944.jpg',
+				'<%=basePath%>images/focusPic/U11828P59T310D4F4829DT20160106115944.jpg',
+				"javascript:doPost('content/showDetail',{'postId':18,'userId':'cz8263','area':20 },'_blank');",
+				"复古气质美人摄影拍出浓郁油画感", "");
+		FocusPic_02.Add(
+				'<%=basePath%>images/focusPic/U2679P59T310D5F4828DT20160106115507.jpg',
+				'<%=basePath%>images/focusPic/U2679P59T310D5F4829DT20160106115507.jpg',
+				"javascript:doPost('content/showDetail',{'postId':19,'userId':'cz8263','area':20 },'_blank');", "CES开幕：同一个展会同一种残酷", "");
+		<%
+			}
+		%>
 
 			FocusPic_02.listCode = '<span onmouseover="FocusPic.childs[[$thisId]].select([$num])"><img src="[$pic]" alt="[$title]" /><b></b></span>';
 			FocusPic_02.begin();

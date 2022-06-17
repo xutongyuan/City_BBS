@@ -21,12 +21,7 @@ import com.github.pagehelper.PageHelper;
 import com.sun.xml.internal.fastinfoset.algorithm.BuiltInEncodingAlgorithm.WordListener;
 
 import ssm.mapper.UsersMapper;
-import ssm.po.Integration;
-import ssm.po.PostCount;
-import ssm.po.Theme;
-import ssm.po.ThemeBack;
-import ssm.po.Userdetail;
-import ssm.po.Users;
+import ssm.po.*;
 import ssm.po.readonly.ThemeBackRead;
 import ssm.po.readonly.ThemeRead;
 import ssm.service.ContentService;
@@ -289,6 +284,20 @@ public class ContentCtr {
 			map.put("navPost3",navPost.get(2) );
 		}
 		return map;
+	}
+
+
+	/**
+	 *查询轮播图
+	 * */
+	@RequestMapping("/getBannerList")
+	@ResponseBody
+	public List<Banner> getBannerList()
+	{
+		PageHelper.startPage(1, 4);
+		Page<Banner> tu1 = (Page<Banner>) contentService.findBannerList("Y");
+		List<Banner> list = (ArrayList<Banner>) tu1.getResult();
+		return list;
 	}
 	
 	

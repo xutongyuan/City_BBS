@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ssm.task.service.TaskService;
 
@@ -17,6 +18,8 @@ public class TimerTasks {
     @Autowired
     TaskService taskService;
 //    @Scheduled(cron="0 0 0,2,4,6,8,10,12,14,16,18,20,22 * * ? ")  	 // 每2小时更新一次
+    @Scheduled(cron = "0 0 0/1 * * ? ") //每小时更新一次
+//    @Scheduled(cron = "0 0/2 0/1 * * ? ") //每2分钟更新一次
     public void newsTask(){
         try {
             //要执行的任务逻辑写在这里

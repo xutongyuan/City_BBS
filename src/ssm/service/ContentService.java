@@ -1,14 +1,11 @@
 package ssm.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import ssm.po.Integration;
-import ssm.po.PostCount;
-import ssm.po.Theme;
-import ssm.po.ThemeBack;
-import ssm.po.Userdetail;
+import ssm.po.*;
 import ssm.po.readonly.IntegrationUsersRead;
 import ssm.po.readonly.ThemeBackRead;
 import ssm.po.readonly.ThemeRead;
@@ -48,6 +45,10 @@ public interface ContentService {
 	ArrayList<Theme> findRecentBack();
 	
 	ArrayList<Theme> findRecentPost(String isNav);
+
+	List<Banner> findBannerList(String isEnable);
 	
 	ArrayList<Userdetail> findUserdetailsByPmsArea(String area);
+
+	int insertBannerList(List<Theme> rows);
 }

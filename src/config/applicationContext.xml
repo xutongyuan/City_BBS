@@ -13,7 +13,6 @@
     <mvc:annotation-driven conversion-service="converterService" validator="validator" />
 <!-- 配置包扫描 （排除对service注解的注入）-->
     <context:component-scan base-package="ssm" >
-    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     	 <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
     	<!-- <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>  -->
     </context:component-scan>

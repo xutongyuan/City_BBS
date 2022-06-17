@@ -40,12 +40,95 @@
    </where>
    ORDER BY t.posting_time DESC
   </select>
+
+  <!-- 查询轮播图  -->
+  <select id="selectBannerList" resultType="ssm.po.Banner" parameterType="java.lang.String" >
+    select id,post_id postId,main_title mainTitle,sub_title subTitle,big_pic_url bigPicUrl,small_pic_url smallPicUrl,post_url postUrl,area,creation_date creationDate from banner
+     where is_enable = #{isEnable,jdbcType=VARCHAR}
+    ORDER BY creation_date desc
+  </select>
+
+  <update id="updateBannerEnableById" parameterType="java.lang.Integer" >
+    update banner
+    set is_enable = 'N'  where id = #{id,jdbcType=INTEGER}
+  </update>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from theme
     where post_id = #{postId,jdbcType=INTEGER}
   </delete>
 
+<!--插入轮播表-->
+  <insert id="insertBannerSelective" keyProperty="id" useGeneratedKeys="true" parameterType="ssm.po.Banner" >
+    insert into banner
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="postId != null" >
+        post_id,
+      </if>
+      <if test="mainTitle != null" >
+        main_title,
+      </if>
+      <if test="subTitle != null" >
+        sub_title,
+      </if>
+      <if test="bigPicUrl != null" >
+        big_pic_url,
+      </if>
+      <if test="smallPicUrl != null" >
+        small_pic_url,
+      </if>
+      <if test="postUrl != null" >
+        post_url,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+
+      <if test="isEnable != null" >
+        is_enable,
+      </if>
+      <if test="creationDate != null" >
+        creation_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="postId != null" >
+        #{postId,jdbcType=INTEGER},
+      </if>
+      <if test="mainTitle != null" >
+        #{mainTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null" >
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bigPicUrl != null" >
+        #{bigPicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="smallPicUrl != null" >
+        #{smallPicUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="postUrl != null" >
+        #{postUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=INTEGER},
+      </if>
+
+      <if test="isEnable != null" >
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="creationDate != null" >
+        #{creationDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+<!--  插入主题表-->
   <insert id="insertSelective" keyProperty="postId" useGeneratedKeys="true" parameterType="ssm.po.Theme" >
     insert into theme
     <trim prefix="(" suffix=")" suffixOverrides="," >
