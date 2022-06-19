@@ -31,7 +31,9 @@ public interface ContentService {
 	PostCount findPostCount(Integer postId);
 	
 	ArrayList<ThemeRead> findPostListBySearch(String sql);
-	
+
+	ArrayList<ThemeRead> findPostListByTitle(String title);
+
 	int updateTheme(Theme theme);
 	
 	int updateIntegrationGoodAdd(String userId);

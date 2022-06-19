@@ -17,7 +17,7 @@ public class NewsApi {
     public static final String URL = "https://api.binstd.com/news/get";
 //    public static final String channel = "头条";// utf8  新闻频道(头条,财经,体育,娱乐,军事,教育,科技,NBA,股票,星座,女性,健康,育儿)
     public static final String[] channel = {"头条","财经","体育","娱乐","军事","教育","科技","NBA","股票","星座","女性","健康","育儿"};
-    public static final int num = 5;// 数量 默认10，最大40
+    public static final int num = 15; // 数量 默认10，最大40
     public static int curIndex = 0;
 
     public static List<ApiNewsTemp> NewGet(String chan) throws Exception {

@@ -9,6 +9,7 @@ import ssm.ContentCtr;
 import ssm.mapper.ApiNewsTempMapper;
 import ssm.po.ApiNewsTemp;
 import ssm.po.Theme;
+import ssm.po.readonly.ThemeRead;
 import ssm.service.ContentService;
 import ssm.task.api.NewsApi;
 import ssm.task.service.TaskService;
@@ -36,14 +37,22 @@ public class TaskServiceImpl implements TaskService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(new Date());
         List<ApiNewsTemp> list = NewsApi.NewGet(chan);
+        int num = 0;
         for (ApiNewsTemp entity:list
              ) {
-            if(entity.getContent().length()>10000){//超过1000字，后面不保存
-                entity.setContent(entity.getContent().substring(0,9999));
+            //每次只新增5条，已存在的不新增
+            if(num<5){
+                List<ThemeRead> exist = contentService.findPostListByTitle(entity.getTitle());
+                if(exist!=null&&exist.isEmpty()){
+                    if(entity.getContent().length()>10000){//超过1000字，后面不保存
+                        entity.setContent(entity.getContent().substring(0,9999));
+                    }
+                    entity.setCreationDate(date);
+                    entity.setSync("0");
+                    apiNewsTempMapper.insertSelective(entity);
+                    num++;
+                }
             }
-            entity.setCreationDate(date);
-            entity.setSync("0");
-            apiNewsTempMapper.insertSelective(entity);
         }
         return list.size();
     }

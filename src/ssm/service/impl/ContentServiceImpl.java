@@ -116,7 +116,13 @@ public class ContentServiceImpl implements ContentService {
 		// TODO Auto-generated method stub
 		return themeReadMapper.selectAllBySearch(sql);
 	}
-//
+
+	@Override
+	public ArrayList<ThemeRead> findPostListByTitle(String title) {
+		// TODO Auto-generated method stub
+		return themeReadMapper.selectAllBySearch(title);
+	}
+
 	@Override
 	public int updateTheme(Theme theme) {
 		// TODO Auto-generated method stub

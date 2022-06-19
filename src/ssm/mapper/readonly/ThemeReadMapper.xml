@@ -57,6 +57,14 @@
      where t.user_id = u.user_id  and t.post_id = p.post_id
      and t.title like #{sql,jdbcType=VARCHAR} order by posting_time DESC
   </select>
+
+    <select id="selectAllByTitle" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        t.title
+        from theme t
+        where
+         t.title like #{title,jdbcType=VARCHAR}
+    </select>
   
 
   

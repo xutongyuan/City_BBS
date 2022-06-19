@@ -17,6 +17,9 @@ public interface ThemeReadMapper {
     ThemeRead selectPostById(Integer postId);
     //模糊搜索帖子
     ArrayList<ThemeRead> selectAllBySearch(String sql);
+
+    //根据帖子名称搜索
+    ArrayList<ThemeRead> selectAllByTitle(String sql);
     
     ArrayList<ThemeRead> selectThemeByUserId(String userId);
 
