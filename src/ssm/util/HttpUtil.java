@@ -82,9 +82,7 @@ public class HttpUtil {
         CloseableHttpClient httpClient = wrapClient(url);
         try {
             httpPost = new HttpPost(url);
-            //addHeader，如果Header没有定义则添加，已定义则不变，setHeader会重新赋值
-            httpPost.addHeader("Content-type","application/json;charset=utf-8");
-            httpPost.setHeader("Accept", "application/json");
+
             StringEntity entity = new StringEntity(jsonParam, StandardCharsets.UTF_8);
 //            entity.setContentType("text/json");
 //            entity.setContentEncoding(new BasicHeader("Content-Type", "application/json;charset=UTF-8"));
@@ -94,6 +92,10 @@ public class HttpUtil {
                 for (Map.Entry<String, String> entry : headers.entrySet()) {
                     httpPost.addHeader(entry.getKey(), entry.getValue());
                 }
+            }else{
+                //addHeader，如果Header没有定义则添加，已定义则不变，setHeader会重新赋值
+                httpPost.addHeader("Content-type","application/json;charset=utf-8");
+                httpPost.setHeader("Accept", "application/json");
             }
             // 执行请求
             response = httpClient.execute(httpPost);
@@ -115,7 +117,7 @@ public class HttpUtil {
                 e.printStackTrace();
             }
         }
-        return null;
+        return  null;
     }
 
 

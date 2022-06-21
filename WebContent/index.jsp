@@ -13,7 +13,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>潮州交友论坛-首页</title>
+<%--	360--%>
+<meta name="360-site-verification" content="074cf97e5f2454238f568ec444850051" />
+<%--	百度--%>
+<meta name="baidu-site-verification" content="code-Te1QEPstcc" />
+<%--	搜狗--%>
+<meta name="sogou_site_verification" content="FPvYEHF5sr" />
+<%--	神马--%>
+<meta name="shenma-site-verification" content="a3cadaa21583e1f68fb07f38177e8252_1655730789"/>
+<%--	头条--%>
+<meta name="bytedance-verification-code" content="ba33cCTaV4bwInx0XV6k" />
+<title>潮州交友论坛-潮州最火的交友论坛|潮州民生|潮州生活|异性交友</title>
 <%
  String path = request.getContextPath();
  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path + "/";

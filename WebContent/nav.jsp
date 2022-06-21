@@ -4,6 +4,7 @@
 <html>
 
 	<head>
+		<title>潮州交友论坛</title>
 		<%
 		String path = request.getContextPath();
 		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

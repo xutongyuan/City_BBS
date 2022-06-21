@@ -11,6 +11,7 @@ import ssm.po.ApiNewsTemp;
 import ssm.po.Theme;
 import ssm.po.readonly.ThemeRead;
 import ssm.service.ContentService;
+import ssm.task.api.BaiduPushApi;
 import ssm.task.api.NewsApi;
 import ssm.task.service.TaskService;
 
@@ -18,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -89,6 +91,9 @@ public class TaskServiceImpl implements TaskService {
         });
         //有图片的更新到轮播图
         contentService.insertBannerList(themes);
+        //推送到百度收录
+        List<String> urlList = themes.stream().map(x -> BaiduPushApi.SITE_URL + "/content/showDetail?postId=" + x.getPostId() + "&userId=" + x.getUserId() + "&area=" + x.getArea()).collect(Collectors.toList());
+        BaiduPushApi.pushBatch(urlList);
 
         return noPostNews.size();
     }
