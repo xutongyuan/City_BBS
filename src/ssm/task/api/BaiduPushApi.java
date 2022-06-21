@@ -47,7 +47,7 @@ public class BaiduPushApi {
             JSONObject json = JSONObject.fromObject(result);
             if (json.getInt("success") >0) {
                 //推送百度普通收录成功
-                System.out.println("推送百度普通收录成功");
+                System.out.println("推送百度普通收录成功："+params);
             }else{
                 System.out.println("推送百度普通收录失败，不合法的url列表：\r\n"+json.getString("not_valid"));
             }
