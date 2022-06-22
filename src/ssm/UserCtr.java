@@ -365,7 +365,8 @@ public class UserCtr {
 		for (ThemeRead dto:tu
 			 ) {
 			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
-			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+			String content = dto.getContent().replaceAll("<.*?>", "");
+			dto.setContent(content.length()>200?content.substring(0, 200)+"......":content);
 		}
 		if(tu!=null){
 			mav.addObject("themelist", tu);
@@ -375,7 +376,8 @@ public class UserCtr {
 		for (Theme_BackRead dto:theme_BackRead
 		) {
 			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
-			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+			String content = dto.getContent().replaceAll("<.*?>", "");
+			dto.setContent(content.length()>200?content.substring(0, 200)+"......":content);
 		}
 		mav.addObject("backlist", theme_BackRead);
 		//他的精华帖
@@ -383,7 +385,8 @@ public class UserCtr {
 		for (ThemeRead dto:themeRead
 		) {
 			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
-			dto.setContent(dto.getContent().replaceAll("<.*?>","").substring(0, 200)+"......");
+			String content = dto.getContent().replaceAll("<.*?>", "");
+			dto.setContent(content.length()>200?content.substring(0, 200)+"......":content);
 		}
 		mav.addObject("jinglist", themeRead);
 		mav.setViewName("user/otheruser");
