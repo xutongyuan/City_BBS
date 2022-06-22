@@ -11,6 +11,7 @@ import ssm.po.ApiNewsTemp;
 import ssm.po.Theme;
 import ssm.po.readonly.ThemeRead;
 import ssm.service.ContentService;
+import ssm.service.LoginService;
 import ssm.task.api.BaiduPushApi;
 import ssm.task.api.NewsApi;
 import ssm.task.service.TaskService;
@@ -31,6 +32,8 @@ public class TaskServiceImpl implements TaskService {
     ContentCtr contentCtr;
     @Autowired
     ContentService contentService;
+    @Autowired
+    LoginService loginService;
 
     @Override
     @Transactional
@@ -96,5 +99,15 @@ public class TaskServiceImpl implements TaskService {
         BaiduPushApi.pushBatch(urlList);
 
         return noPostNews.size();
+    }
+
+    @Transactional
+    public int ThemePush() throws Exception {
+        //全量推送帖子到百度
+        List<ThemeRead> list = loginService.findThemeReadByuserId("cz4153");
+        List<String> urlList = list.stream().map(x -> BaiduPushApi.SITE_URL + "/content/showDetail?postId=" + x.getPostId() + "&userId=" + x.getUserId() + "&area=" + x.getArea()).collect(Collectors.toList());
+        BaiduPushApi.pushBatch(urlList);
+        System.out.println(urlList.size());
+        return urlList.size();
     }
 }

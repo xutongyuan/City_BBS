@@ -55,6 +55,26 @@ public class TaskCtr {
 		return "更新新闻列表完成，请稍后刷新论坛查看结果";
 	}
 
+//	@RequestMapping(value = "/themePush",produces ="text/html;charset=utf-8")
+//	public String themePush(String chan, HttpSession session)
+//	{
+//		try {
+//			//校验管理员账号
+//			Object admin1 = session.getAttribute("admin");
+//			if(admin1==null){
+//				return "当前非管理员账号操作，请登录后重试";
+//			}
+//			int postRows = taskService.ThemePush();
+//			System.out.println("收录推送完成："+postRows);
+//			return "收录推送完成："+postRows;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return "收录推送失败";
+//		}
+//
+//
+//	}
+
 
 	
 	

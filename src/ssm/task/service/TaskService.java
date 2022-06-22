@@ -4,6 +4,6 @@ public interface TaskService {
 
     int addNewsTemp(String chan) throws Exception;
     int autoPost() throws Exception;
-
+    int ThemePush() throws Exception;
 
 }
