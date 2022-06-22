@@ -115,9 +115,8 @@
 														src="<%=basePath%>images/showlist/pin_3.gif"
 														align="absMiddle" width="16px" height="16px"> </a></td>
 												<td class="subject">
-<%--														window.open("content/showDetail?postId="+postId+"&userId="+userId+"&area=<%=areaStr%>',"_blank");--%>
 													<a class="f14"
-													href="javascript:window.open('content/showDetail?postId=${list.postId }&userId=${list.userId }&area=${list.area }','_blank');" name="readlink">
+													href="content/showDetail?postId=${list.postId }&userId=${list.userId }&area=<%=areaStr%>" name="readlink" target="_blank">
 														<font color="#888888"> <strong>${list.title }&nbsp;</strong></font>
 
 													</a>&nbsp;
@@ -133,8 +132,49 @@
 													<p>${list.postingTime }</p>
 												</td>
 												<td class="num"><em>${list.backcount }</em>/${list.readcount }</td>
+<%--												删除、取消加精--%>
+												<%if(user==null){
 
-												<td></td>
+												}else{
+
+													String[] strArray = user.getPmsArea().split(",");
+													String flag = "false";
+													String uid = (String)pageContext.getAttribute("userId");
+													System.out.println(uid);
+													if(user.getRoleId()==2){
+														for(int i=0;i<strArray.length;i++){
+															if(strArray[i].equals(areaStr)){
+																flag="true";%>
+												<td class="td_opera1">
+													<a href="javascript:void(0)" class="removePost">[删除]</a>
+													<c:if test="${list.goodPost=='N' }">
+														<a href="javascript:void(0);" class="addjing">  [加精]</a>
+													</c:if>
+													<c:if test="${list.goodPost=='Y' }">
+														<a href="javascript:void(0);" class="canceljing">  [取消加精]</a>
+													</c:if>
+
+												</td>
+												<% break; }
+												}
+													if(flag.equals("false")){
+														if(user.getUserId().equals(uid)){	%>
+												<td class="td_opera1" >
+													<a href="javascript:void(0)" class="removePost">[删除]</a>
+												</td>
+												<% }
+												}
+												}else if(user.getRoleId()==3&&user.getUserId().equals(uid)){%>
+												<td class="td_opera1">
+													<a href="javascript:void(0)" class="removePost">[删除]</a>
+												</td>
+												<%	}
+												} %>
+												<td style="display:none;">
+													<input type="text" value="${list.postId }" class="postId" style="display:none;">	<!-- 绑定帖子id -->
+													<input type="text" value="${list.userId }" class="userId" style="display:none;">
+													<input type="text" value="${list.goodPost }" class="goodPost" style="display:none;">
+												</td>
 
 											</tr>
 											</c:forEach>
@@ -150,9 +190,8 @@
 														src="<%=basePath%>images/showlist/folder_new.gif"
 														align="absMiddle" width="16px" height="16px" /></a></td>
 												<td class="subject" id="td_1336173"><a
-													href="javascript:void(0)" class="f14" id="a_ajax_1336173"
+													href="content/showDetail?postId=${list.postId }&userId=${list.userId }&area=<%=areaStr%>" class="f14" id="a_ajax_1336173"
 													name="readlink" target="_blank"> <font color="#666">${list.title }&nbsp;</font></a>
-
 												<span class="imgs" style="display:none;"> <img
 														src="<%=basePath%>images/showlist/jing.gif" />
 												</span> 
@@ -179,7 +218,7 @@
 															if(strArray[i].equals(areaStr)){	
 																flag="true";%>
 														<td class="td_opera1">
-															<a href="javascript:void()" class="removePost">[删除]</a>
+															<a href="javascript:void(0)" class="removePost">[删除]</a>
 															<c:if test="${list.goodPost=='N' }">
 															<a href="javascript:void(0);" class="addjing">  [加精]</a>
 															</c:if>
@@ -193,13 +232,13 @@
 														if(flag.equals("false")){
 															if(user.getUserId().equals(uid)){	%>
 																<td class="td_opera1" >
-																	<a href="javascript:void()" class="removePost">[删除]</a>						
+																	<a href="javascript:void(0)" class="removePost">[删除]</a>
 																</td>	
 															<% }
 														}
 													}else if(user.getRoleId()==3&&user.getUserId().equals(uid)){%>
 												<td class="td_opera1">
-													<a href="javascript:void()" class="removePost">[删除]</a>						
+													<a href="javascript:void(0)" class="removePost">[删除]</a>
 												</td>	
 												<%	}
 												} %>
@@ -256,7 +295,7 @@
 	</div>
 	<div class="footer">
     <div class="COMM">
-        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="javascript:void(0)" target="_blank"><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
+        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="/" ><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
         <div id="copyr">
 <%--       		    版权by:五邑大学 160810班 许桐源 &nbsp;仅用于毕业设计--%>
 			粤ICP备2022047901
@@ -317,17 +356,18 @@
 	
 	
 	//帖子列表点击事件
-		$(".post").click(function(){
-			
-			var postId = $(this).find(".postId").val();
-			var userId = $(this).find(".userId").val();
-			//console.log("postId:"+postId);
-			//console.log("userId:"+userId);
-			<%--doPost("content/showDetail",{"postId":postId,"userId":userId,"area":<%=areaStr%> },"_blank");--%>
-			//换成get方法调用
-			window.open('content/showDetail?postId='+postId+'&userId='+userId+'&area=<%=areaStr%>',"_blank");
-		
-		})
+	<%--	$(".post").click(function(){--%>
+	<%--		--%>
+	<%--		var postId = $(this).find(".postId").val();--%>
+	<%--		var userId = $(this).find(".userId").val();--%>
+	<%--		//console.log("postId:"+postId);--%>
+	<%--		//console.log("userId:"+userId);--%>
+	<%--		&lt;%&ndash;doPost("content/showDetail",{"postId":postId,"userId":userId,"area":<%=areaStr%> },"_blank");&ndash;%&gt;--%>
+	<%--		//换成get方法调用--%>
+	<%--		&lt;%&ndash;window.open('content/showDetail?postId='+postId+'&userId='+userId+'&area=<%=areaStr%>',"_blank");&ndash;%&gt;--%>
+
+	<%--	--%>
+	<%--	})--%>
 
 	//加精事件
 	$(".addjing,.canceljing").click(function(event){

@@ -225,7 +225,9 @@ Users user = (Users)session.getAttribute("data");
 								</div>
 								<div class="tx_box">
 									<div class="txBG">
-										<a href="javascript:doPost('user/otherUser',{'userId':'${list.userId }'},'_blank');"><img src="<%=basePath%>${list.image }" /></a>
+<%--										查看用户信息--%>
+<%--										<a href="javascript:doPost('user/otherUser',{'userId':'${list.userId }'},'_blank');"><img src="<%=basePath%>${list.image }" /></a>--%>
+										<a href="user/otherUser?userId=${list.userId }" target="_blank"><img src="<%=basePath%>${list.image }" /></a>
 									</div>
 
 								</div>
@@ -341,7 +343,7 @@ Users user = (Users)session.getAttribute("data");
 	</div>
 	<div class="footer">
     <div class="COMM">
-        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="javascript:void(0)" target="_blank"><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
+        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="/" ><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
         <div id="copyr">
 <%--       		    版权by:五邑大学 160810班 许桐源 &nbsp;仅用于毕业设计--%>
 			粤ICP备2022047901

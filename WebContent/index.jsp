@@ -162,11 +162,11 @@
 					<div class="top_news">
 						<h2>
 							<a class="cRed"
-							   href="javascript:window.open('content/showDetail?postId=<%=navPost1.getPostId()%>&userId=<%=navPost1.getUserId()%>&area=<%=navPost1.getArea()%>','_blank');">
+							   href="content/showDetail?postId=<%=navPost1.getPostId()%>&userId=<%=navPost1.getUserId()%>&area=<%=navPost1.getArea()%>">
 								<%=navPostT1%></a>
 						</h2>
 						<p>
-							<a href="javascript:window.open('content/showDetail?postId=<%=navPost1.getPostId()%>&userId=<%=navPost1.getUserId()%>&area=<%=navPost1.getArea()%>','_blank');">
+							<a href="content/showDetail?postId=<%=navPost1.getPostId()%>&userId=<%=navPost1.getUserId()%>&area=<%=navPost1.getArea()%>">
 								<%=navPostC1%>……</a>
 						</p>
 					</div>
@@ -175,11 +175,11 @@
 					<div class="top_news top_news_star">
 						<h2>
 							<a class="cRed"
-							   href="javascript:window.open('content/showDetail?postId=<%=navPost2.getPostId()%>&userId=<%=navPost2.getUserId()%>&area=<%=navPost2.getArea()%>','_blank');">
+							   href="content/showDetail?postId=<%=navPost2.getPostId()%>&userId=<%=navPost2.getUserId()%>&area=<%=navPost2.getArea()%>">
 								<%=navPostT2%></a>
 						</h2>
 						<p>
-							<a href="javascript:window.open('content/showDetail?postId=<%=navPost2.getPostId()%>&userId=<%=navPost2.getUserId()%>&area=<%=navPost2.getArea()%>','_blank');">
+							<a href="content/showDetail?postId=<%=navPost2.getPostId()%>&userId=<%=navPost2.getUserId()%>&area=<%=navPost2.getArea()%>">
 								<%=navPostC2%>……</a>
 						</p>
 					</div>
@@ -188,11 +188,11 @@
 					<div class="top_news">
 						<h2>
 							<a class="cRed"
-							   href="javascript:window.open('content/showDetail?postId=<%=navPost3.getPostId()%>&userId=<%=navPost3.getUserId()%>&area=<%=navPost3.getArea()%>','_blank');">
+							   href="content/showDetail?postId=<%=navPost3.getPostId()%>&userId=<%=navPost3.getUserId()%>&area=<%=navPost3.getArea()%>">
 								<%=navPostT3%></a>
 						</h2>
 						<p>
-							<a href="javascript:window.open('content/showDetail?postId=<%=navPost3.getPostId()%>&userId=<%=navPost3.getUserId()%>&area=<%=navPost3.getArea()%>','_blank');">
+							<a href="content/showDetail?postId=<%=navPost3.getPostId()%>&userId=<%=navPost3.getUserId()%>&area=<%=navPost3.getArea()%>">
 								<%=navPostC3%>……</a>
 						</p>
 					</div>
@@ -232,7 +232,7 @@
    </div>
    <div class="footer">
     <div class="COMM">
-        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="javascript:void(0)" target="_blank"><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
+        <div class="foot_img" id="div_123"><span id="_ideConac"><a href="/"><img id="imgConac" vspace="0" hspace="0" border="0" src="images/home/topczlt1.gif" ></a></span></div>
         <div id="copyr">
 <%--       		    版权by:五邑大学 160810班 许桐源 &nbsp;仅用于毕业设计--%>
 	粤ICP备2022047901
@@ -299,7 +299,8 @@
 						var title = result.recentBack[index].title.substring(0,15);
 						var postingTime = result.recentBack[index].postingTime;
 						// var html = '<li><a href='+'"'+"javascript:doPost('content/showDetail',{'postId':"+postId+",'userId':'"+userId+"','area':"+area+" },'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
-						var html = '<li><a href='+'"'+"javascript:window.open('content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+"' ,'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
+						// var html = '<li><a href='+'"'+"javascript:window.open('content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+"' ,'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
+						var html = '<li><a href='+'"'+"content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
 						$("#txt_li1").append(html);
 					});
 					$.each(result.recentPost,function(index,item){
@@ -309,7 +310,8 @@
 						var title = result.recentPost[index].title.substring(0,15);
 						var postingTime = result.recentPost[index].postingTime;
 						// var html = '<li><a href='+'"'+"javascript:doPost('content/showDetail',{'postId':"+postId+",'userId':'"+userId+"','area':"+area+" },'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
-						var html = '<li><a href='+'"'+"javascript:window.open('content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+"' ,'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
+						// var html = '<li><a href='+'"'+"javascript:window.open('content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+"' ,'_blank');"+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
+						var html = '<li><a href='+'"'+"content/showDetail?postId="+postId+"&userId="+userId+"&area="+area+'">'+title+'</a> <span class="des">'+postingTime+'</span></li>';
 						$("#txt_li2").append(html);
 					})
 				},
