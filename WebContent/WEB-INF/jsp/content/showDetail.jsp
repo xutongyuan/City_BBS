@@ -121,7 +121,7 @@ Users user = (Users)session.getAttribute("data");
 								</div>
 								<div class="tx_box">
 									<div class="txBG">
-										<a href="javascript:doPost('user/otherUser',{'userId':'${integration.userId }'},'_blank');"><img src="<%=basePath%>${themeRead.image }" /></a>
+										<a href="user/otherUser?userId=${integration.userId }"><img src="<%=basePath%>${themeRead.image }" /></a>
 									</div>
 
 								</div>
