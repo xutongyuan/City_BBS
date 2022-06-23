@@ -23,7 +23,7 @@
 <meta name="shenma-site-verification" content="a3cadaa21583e1f68fb07f38177e8252_1655730789"/>
 <%--	头条--%>
 <meta name="bytedance-verification-code" content="ba33cCTaV4bwInx0XV6k" />
-<title>潮州交友论坛-潮州最火的交友论坛|潮州民生|潮州生活|异性交友</title>
+<title>潮州交友论坛-潮州最火的交友论坛|潮州论坛|潮州社区|潮州生活|潮州异性交友</title>
 <%
  String path = request.getContextPath();
  String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()+ path + "/";
