@@ -130,14 +130,14 @@ Users user = (Users)session.getAttribute("data");
 							<div class="zttz">
 								<div class="zhuti">
 									<div class="ztnum">
-										<a href="#">${integration.backNum }</a>
+										<a href="user/otherUser?userId=${integration.userId }">${integration.backNum }</a>
 									</div>
 									<div class="ztname">
 										回复</div>
 								</div>
 								<div class="tiezi">
 									<div class="ztnum">
-										<a href="#">${integration.postNum }</a>
+										<a href="user/otherUser?userId=${integration.userId }">${integration.postNum }</a>
 									</div>
 									<div class="ztname">
 										帖子</div>
@@ -146,10 +146,10 @@ Users user = (Users)session.getAttribute("data");
 							<div class="djxx" name="等级信息">
 								<span>
                                         等级:</span>
-								<a href="javascript:void(0);">${integration.monicker }</a>
+								<a href="user/otherUser?userId=${integration.userId }">${integration.monicker }</a>
 								<span>
                                         积分:</span>
-								<a href="javascript:void(0);">${integration.score }</a>
+								<a href="user/otherUser?userId=${integration.userId }">${integration.score }</a>
 								
 							<div class="jiangzhang">
 

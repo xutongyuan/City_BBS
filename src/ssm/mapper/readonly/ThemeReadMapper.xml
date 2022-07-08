@@ -77,7 +77,7 @@
   </select>
   
   <select id="selectThemeByUserIdAndGood" resultMap="BaseResultMap" parameterType="java.lang.String">
-    select t.post_id,t.title,t.content,t.posting_time,t.area,pc.read_count readcount,pc.back_count backcount
+    select t.user_id,t.post_id,t.title,t.content,t.posting_time,t.area,pc.read_count readcount,pc.back_count backcount
 from theme t,post_count pc
 	where t.post_id = pc.post_id and t.good_post='Y' and t.user_id =  #{userId,jdbcType=VARCHAR}
     order by t.posting_time DESC

@@ -113,7 +113,7 @@
 												<td class="icon tac"><img
 														title="总置顶" alt="总置顶"
 														src="<%=basePath%>images/showlist/pin_3.gif"
-														align="absMiddle" width="16px" height="16px"> </a></td>
+														align="absMiddle" width="16px" height="16px"> </td>
 												<td class="subject">
 													<a class="f14"
 													href="content/showDetail?postId=${list.postId }&userId=${list.userId }&area=<%=areaStr%>" name="readlink" target="_blank">
@@ -128,7 +128,7 @@
 												<td class="author">
 													<div class="aimg">
 														
-													</div> <a href="/user/space/2281/1/_1" title=${list.nickname }>${list.nickname }</a>
+													</div> <a href="user/otherUser?userId=${list.userId }" title=${list.nickname }>${list.nickname }</a>
 													<p>${list.postingTime }</p>
 												</td>
 												<td class="num"><em>${list.backcount }</em>/${list.readcount }</td>
@@ -200,7 +200,7 @@
 												</span> <span class="tps">
 												</span></td>
 												<td class="author">
-													 <a href="javascript:void(0);" title="${list.nickname }">${list.nickname }</a>
+													 <a href="user/otherUser?userId=${list.userId }" title="${list.nickname }">${list.nickname }</a>
 													<p>${list.postingTime }</p>
 												</td>
 												<td class="num"><em>${list.backcount }/ ${list.readcount }</em></td>
