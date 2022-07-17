@@ -38,7 +38,7 @@ create table users(
                       user_id varchar(30),
                       register_time varchar(50),
                       role_id int,
-                      pms_area varchar(50)
+                      pms_area varchar(255)
 );
 -- drop table users;
 -- select * from users;
@@ -72,7 +72,6 @@ CREATE TABLE `api_news_temp`  (
                                   `sync` varchar(3) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
                                   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
-SET FOREIGN_KEY_CHECKS = 1;
 
 -- 密保表
 create table pass_security(
@@ -177,6 +176,22 @@ create table message(
                         time varchar(50),
                         looked varchar(10)
 );
+
+-- 首页轮播图表
+DROP TABLE IF EXISTS `banner`;
+CREATE TABLE `banner`  (
+                           `id` int(11) NOT NULL AUTO_INCREMENT,
+                           `post_id` int(11) NULL DEFAULT NULL COMMENT '帖子id',
+                           `main_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '主标题',
+                           `sub_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '副标题',
+                           `big_pic_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '大图链接',
+                           `small_pic_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '小图链接',
+                           `post_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '帖子链接',
+                           `area` int(11) NULL DEFAULT NULL COMMENT '区域',
+                           `is_enable` varchar(5) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '是否生效',
+                           `creation_date` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建时间',
+                           PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 499 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- 创建integration表触发器
 create trigger integration_trigger
