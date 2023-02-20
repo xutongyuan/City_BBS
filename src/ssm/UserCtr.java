@@ -373,22 +373,38 @@ public class UserCtr {
 		}
 		//他的回复
 		ArrayList<Theme_BackRead> theme_BackRead = loginSer.findTheme_BackRead(userId);
+		ArrayList<Theme_BackRead> list2 = new ArrayList<>();
+		int num2 = 1;
 		for (Theme_BackRead dto:theme_BackRead
 		) {
+			if(num2>5){
+				//只取5条记录
+				break;
+			}
 			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
 			String content = dto.getContent().replaceAll("<.*?>", "");
 			dto.setContent(content.length()>200?content.substring(0, 200)+"......":content);
+			list2.add(dto);
+			num2++;
 		}
-		mav.addObject("backlist", theme_BackRead);
+		mav.addObject("backlist", list2);
 		//他的精华帖
 		ArrayList<ThemeRead> themeRead = loginSer.findThemeReadByuserIdAndGood(userId);
+		ArrayList<ThemeRead> list3 = new ArrayList<>();
+		int num3 = 1;
 		for (ThemeRead dto:themeRead
 		) {
+			if(num3>5){
+				//只取5条记录
+				break;
+			}
 			dto.setTitle(dto.getTitle().length()>25?dto.getTitle().substring(0,25):dto.getTitle());
 			String content = dto.getContent().replaceAll("<.*?>", "");
 			dto.setContent(content.length()>200?content.substring(0, 200)+"......":content);
+			list3.add(dto);
+			num3++;
 		}
-		mav.addObject("jinglist", themeRead);
+		mav.addObject("jinglist", list3);
 		mav.setViewName("user/otheruser");
 		return mav;
 	}

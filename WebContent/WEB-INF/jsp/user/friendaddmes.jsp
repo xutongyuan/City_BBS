@@ -44,7 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         <c:forEach items="<%=list1 %>" var="list">
                                         <li>
                                             <div class="fr_images">
-                                                <a href="javascript:doPost('user/otherUser',{'userId':'${list.recevId }'},'_blank');" ><img src="images/user/avatar/txjiajiren.gif" /></a></div>
+<%--                                                <a href="javascript:doPost('user/otherUser',{'userId':'${list.recevId }'},'_blank');" ><img src="images/user/avatar/txjiajiren.gif" /></a>--%>
+                                                <a href="user/otherUser?userId=${list.recevId }" ><img src="images/user/avatar/txjiajiren.gif" /></a>
+                                            </div>
                                             <span>
                                                 <font style="font-size: 12px;">你向&nbsp;${list.recevNickname }&nbsp;  提出了好友请求</font>
                                             </span>

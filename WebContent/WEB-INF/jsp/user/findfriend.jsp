@@ -59,7 +59,8 @@
                                                 <div class="fr_images">
                                                     <img src="${list.image }"></div>
                                                 <span>
-                                                    <a href="javascript:doPost('user/otherUser',{'userId':'${list.userId }'},'_blank');" target="_blank">ta的空间</a>
+<%--                                                    <a href="javascript:doPost('user/otherUser',{'userId':'${list.userId }'},'_blank');" target="_blank">ta的空间</a>--%>
+                                                    <a href="user/otherUser?userId=${list.userId }">ta的空间</a>
                                                     <font style="font-size: 12px;" title="${list.nickname }">昵称：${list.nickname }</font>
                                                 </span>
                                                 <span>
